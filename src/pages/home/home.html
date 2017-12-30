@@ -8,11 +8,23 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <h3>GDHOTE Mobile Hub</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-item>
+    <ion-label floating>Firstname</ion-label>
+    <ion-input type="text" ng-model="member.firstName"></ion-input>
+  </ion-item>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <ion-item>
+      <ion-label floating>Lastname</ion-label>
+      <ion-input type="text" ng-model="member.lastName"></ion-input>
+  </ion-item>
+
+   <ion-item>
+        <ion-label floating>Firstname</ion-label>
+        <ion-input type="text" ng-model="member.firstName"></ion-input>
+  </ion-item>
+
+  <button ion-button primary>Save</button>
+  <button ion-button secondary>Refresh</button>
 </ion-content>
