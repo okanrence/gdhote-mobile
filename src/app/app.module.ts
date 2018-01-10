@@ -7,10 +7,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { DatePicker } from '@ionic-native/date-picker';
+import { MemberServiceProvider } from '../providers/member-service/member-service';
+
 
 @NgModule({
   declarations: [
-    MyApp,
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,8 @@ import { DatePicker } from '@ionic-native/date-picker';
   providers: [
     StatusBar,
     SplashScreen, DatePicker,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MemberServiceProvider
   ]
 })
 export class AppModule {}

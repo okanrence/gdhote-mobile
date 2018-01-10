@@ -1,6 +1,9 @@
+import { Member } from './../../models/member.interface';
 import { DatePicker } from '@ionic-native/date-picker';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
+
 
 /**
  * Generated class for the AddMemberPage page.
@@ -16,11 +19,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddMemberPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private datePicker : DatePicker) {
+  constructor(private navCtrl: NavController, private navParams: NavParams, private datePicker: DatePicker, private modalCtrl: ModalController) {
   }
+  @ViewChild('addMemberSlider') addMemberSlider: any;
 
- 
-  showDate():void{
+  member: Member = {
+    FirstName: "",
+    LastName: "",
+    MiddleName: "",
+    Gender: "",
+    DateOfBirth: null,
+    IsInitiated: false,
+    IsMagus: false,
+    MagusDate: null
+  };
+
+  showDate(): void {
 
     this.datePicker.show({
       date: new Date(),
@@ -29,21 +43,39 @@ export class AddMemberPage {
     }).then(
       date => console.log('Got date: ', date),
       err => console.log('Error occurred while getting date: ', err)
-    );
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddMemberPage');
+      );
   }
 
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
 
+
     setTimeout(() => {
+      this.member.DateOfBirth = null;
+      this.member.FirstName = "";
+      this.member.Gender = "";
+      this.member.IsInitiated = false;
+      this.member.IsMagus = false;
+      this.member.MiddleName = "";
+      this.member.LastName = "";
+      this.member.MagusDate = null;
       console.log('Async operation has ended');
       refresher.complete();
-    }, 2000);
+    }, 1000);
   }
-  
+
+  NextPage() {
+    this.navCtrl.push("ConfirmationPage", { member: this.member });
+  }
+
+  next() {
+    this.addMemberSlider.slideNext();
+  }
+
+  prev() {
+    this.addMemberSlider.slidePrev();
+  }
+
 
 }
 
