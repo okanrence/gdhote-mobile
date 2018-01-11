@@ -20,53 +20,50 @@
     </ion-refresher-content>
   </ion-refresher> -->
   <h3>Add Member</h3>
-  <ion-slides #addMemberSlider>
-    <ion-slide>
-      <ion-item>
-        <ion-label floating>Firstname</ion-label>
-        <ion-input type="text" [(ngModel)]="member.FirstName"></ion-input>
-      </ion-item>
+  <form #memberForm="ngForm">
+  <ion-item>
+    <ion-label floating>Firstname</ion-label>
+    <ion-input type="text"   [(ngModel)]="member.FirstName"  id="firstname" name="firstname" required></ion-input>
+  </ion-item>
+    <ion-item>
+      <ion-label floating>Middlename</ion-label>
+      <ion-input type="text" id="middlename" name="middlename" [(ngModel)]="member.MiddleName" required></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label floating>Middlename</ion-label>
-        <ion-input type="text" [(ngModel)]="member.MiddleName"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label floating>Lastname</ion-label>
+      <ion-input type="text" id="lastname" name="lastname"  [(ngModel)]="member.LastName" required></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label floating>Lastname</ion-label>
-        <ion-input type="text" [(ngModel)]="member.LastName"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label floating>Gender</ion-label>
+      <ion-select [(ngModel)]="member.Gender" id="gender" name="gender" required >
+        <ion-option value="f">Female</ion-option>
+        <ion-option value="m">Male</ion-option>
+      </ion-select>
+    </ion-item>
 
-      <ion-item>
-        <ion-label floating>Gender</ion-label>
-        <ion-select [(ngModel)]="member.Gender">
-          <ion-option value="f">Female</ion-option>
-          <ion-option value="m">Male</ion-option>
-        </ion-select>
-      </ion-item>
+    <ion-item>
+      <ion-label floating>Date of birth</ion-label>
+      <ion-input type="text" (tap)="showDate()" [(ngModel)]="member.DateOfBirth" id="dob" name="dob"  required></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label floating>Date of birth</ion-label>
-        <ion-input type="text" (tap)="showDate()" [(ngModel)]="member.DateOfBirth"></ion-input>
-      </ion-item>
+    <ion-item padding>
+      <ion-label>Have you been initiated?</ion-label>
+      <ion-toggle [(ngModel)]="member.IsInitiated" name="initiated"></ion-toggle>
+    </ion-item>
 
-      <ion-item padding>
-        <ion-label>Have you been initiated?</ion-label>
-        <ion-toggle [(ngModel)]="member.IsInitiated"></ion-toggle>
-      </ion-item>
+    <ion-item padding>
+      <ion-label>Are you a Magus?</ion-label>
+      <ion-toggle [(ngModel)]="member.IsMagus" name="magus"></ion-toggle>
+    </ion-item>
 
-      <ion-item padding>
-        <ion-label>Are you a Magus?</ion-label>
-        <ion-toggle [(ngModel)]="member.IsMagus"></ion-toggle>
-      </ion-item>
-
-      <button ion-button block large color="blue" (click)="next()">Next</button>
-    </ion-slide>
-
-    <ion-slide>
-
+    <button ion-button block large icon-start color="blue" (click)="NextPage()" [disabled]="!memberForm.form.valid">Next
+      <ion-icon name="ios-arrow-round-forward"></ion-icon>
+    </button>
+  </form>
+    <!-- <ion-slide>
       Please confirm your details before clicking "Save"
-
       <ion-item>
         <ion-label>Firstname</ion-label>
         <ion-label>
@@ -127,11 +124,10 @@
 
       </ion-grid>
 
-    </ion-slide>
+    </ion-slide> -->
 
-  </ion-slides>
 
-  <!-- <ion-fab bottom right>
+    <!-- <ion-fab bottom right>
   <button ion-fab>
     <ion-icon name ="ion-android-send" ></ion-icon>
   </button>

@@ -1,6 +1,6 @@
 import { Member } from './../../models/member.interface';
 import { DatePicker } from '@ionic-native/date-picker';
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 
@@ -21,7 +21,7 @@ export class AddMemberPage {
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private datePicker: DatePicker, private modalCtrl: ModalController) {
   }
-  @ViewChild('addMemberSlider') addMemberSlider: any;
+  // @ViewChild('addMemberSlider') addMemberSlider: any;
 
   member: Member = {
     FirstName: "",
@@ -68,13 +68,14 @@ export class AddMemberPage {
     this.navCtrl.push("ConfirmationPage", { member: this.member });
   }
 
-  next() {
-    this.addMemberSlider.slideNext();
-  }
+  // next() {
+  //   this.addMemberSlider.slideNext();
+  // }
 
-  prev() {
-    this.addMemberSlider.slidePrev();
-  }
+  // prev() {
+  //   this.addMemberSlider.slidePrev();
+  // }
+
 
 
 }

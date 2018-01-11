@@ -22,20 +22,21 @@
     <ion-col></ion-col>
   </ion-row>
 
-  <ion-grid>
+  <ion-grid >
     <ion-row>
       <ion-col>
-        <ion-card color="blue" (click)="NavigateToPage()">
+        <ion-card color="blue"  (click)="NavigateToPage()" icon-start>
           <ion-card-content>
-            Register
+           <span large>  <ion-icon  name="ios-create"></ion-icon> Register</span> 
+           
           </ion-card-content>
         </ion-card>
       </ion-col>
       <ion-col>
         <div>
-          <ion-card color="blue">
-            <ion-card-content>
-              Payment
+          <ion-card color="blue" icon-start>
+            <ion-card-content >
+              <span >  <ion-icon  name="ios-paper"></ion-icon> Payments</span> 
             </ion-card-content>
           </ion-card>
         </div>

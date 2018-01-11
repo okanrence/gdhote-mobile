@@ -7,24 +7,28 @@
     <ion-col></ion-col>
   </ion-row>
   <div class="login-box">
-    <form #registerForm="ngForm">
+    <form #loginForm="ngForm">
       <ion-row>
         <ion-col>
 
           <ion-item>
             <ion-label floating>Email</ion-label>
-            <ion-input type="text" name="email" required></ion-input>
+            <ion-input type="text"  [(ngModel)]="username" name="email" id="email" required></ion-input>
+            <!-- <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+              Name is required
+            </div> -->
+          
           </ion-item>
           <ion-item>
-              <ion-label floating>Password</ion-label>
-            <ion-input type="password" name="password" required></ion-input>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="password" name="password" id="password" required></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" block  color="blue" large (click)="LoginUser()" type="submit" [disabled]="!registerForm.form.valid">Login</button>
+          <button ion-button class="submit-btn" block color="blue" large (click)="LoginUser()" [disabled]="!loginForm.form.valid" type="submit">Login</button>
         </ion-col>
       </ion-row>
 

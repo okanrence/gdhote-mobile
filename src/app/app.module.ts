@@ -9,6 +9,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { DatePicker } from '@ionic-native/date-picker';
 import { MemberServiceProvider } from '../providers/member-service/member-service';
 
+import { FormsModule } from '@angular/forms'
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,7 @@ import { MemberServiceProvider } from '../providers/member-service/member-servic
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp), FormsModule, DatePicker
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -24,7 +26,7 @@ import { MemberServiceProvider } from '../providers/member-service/member-servic
   ],
   providers: [
     StatusBar,
-    SplashScreen, DatePicker,
+    SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MemberServiceProvider
   ]
