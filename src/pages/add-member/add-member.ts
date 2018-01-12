@@ -1,8 +1,8 @@
 import { Member } from './../../models/member.interface';
 import { DatePicker } from '@ionic-native/date-picker';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ModalController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
+// import { ModalController } from 'ionic-angular';
 
 
 /**
@@ -19,7 +19,7 @@ import { ModalController } from 'ionic-angular';
 })
 export class AddMemberPage {
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private datePicker: DatePicker, private modalCtrl: ModalController) {
+  constructor(private navCtrl: NavController, private datePicker: DatePicker) {
   }
   // @ViewChild('addMemberSlider') addMemberSlider: any;
 
@@ -48,8 +48,7 @@ export class AddMemberPage {
 
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
-
-
+    
     setTimeout(() => {
       this.member.DateOfBirth = null;
       this.member.FirstName = "";
@@ -67,16 +66,5 @@ export class AddMemberPage {
   NextPage() {
     this.navCtrl.push("ConfirmationPage", { member: this.member });
   }
-
-  // next() {
-  //   this.addMemberSlider.slideNext();
-  // }
-
-  // prev() {
-  //   this.addMemberSlider.slidePrev();
-  // }
-
-
-
 }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController  } from 'ionic-angular';
 import { Member } from './../../models/member.interface';
 
 
@@ -20,7 +20,7 @@ export class ConfirmationPage {
   constructor(private navCtrl: NavController,
      private navParams: NavParams,
      private loadingCtrl: LoadingController,
-     private alertCtrl: AlertController ) {
+     private toastCtrl: ToastController ) {
   }
 
   navMember = this.navParams.get('member');
@@ -41,10 +41,10 @@ export class ConfirmationPage {
   }
 
   showAlert(message:string) {
-    this.alertCtrl.create({
-      title: 'Save',
-      subTitle: message,
-      buttons: ['OK']
+    this.toastCtrl.create({
+      message: 'Member details was saved successfully',
+      duration: 3000,
+      position: 'top'
     }).present();
     // alert.present();
   }
@@ -57,7 +57,7 @@ export class ConfirmationPage {
       //Call backend service here
       console.log(JSON.stringify(member));
       this.showAlert('Your details have been saved successfully');
-      this.navCtrl.push("AddMemberPage");
+      this.navCtrl.push("HomePage");
   
   });
     loader.dismiss();

@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms'
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp), FormsModule, DatePicker
+    IonicModule.forRoot(MyApp), FormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -28,7 +28,7 @@ import { FormsModule } from '@angular/forms'
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MemberServiceProvider
+    MemberServiceProvider, DatePicker
   ]
 })
 export class AppModule {}

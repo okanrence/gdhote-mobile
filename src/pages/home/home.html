@@ -6,80 +6,47 @@
 -->
 <ion-header>
 
-  <ion-navbar color="blue">
+  <!-- <ion-navbar color="blue">
     <ion-title>Home Page</ion-title>
-  </ion-navbar>
+  </ion-navbar> -->
 
 </ion-header>
 
 
-<ion-content class="login-content" padding>
-  <ion-row class="logo-row">
-    <ion-col></ion-col>
-    <ion-col width-67>
-      <img src="http://placehold.it/300x200" />
+<ion-content padding>
+  <ion-row  justify-content-center>
+      <!-- <ion-col></ion-col> -->
+    <ion-col col-3>
+      <div>
+          <img src="http://placehold.it/300x200" />
+      </div>
     </ion-col>
-    <ion-col></ion-col>
   </ion-row>
 
-  <ion-grid >
-    <ion-row>
+  <ion-grid style="margin:50px">
+    <ion-row padding>
       <ion-col>
-        <ion-card color="blue"  (click)="NavigateToPage()" icon-start>
-          <ion-card-content>
-           <span large>  <ion-icon  name="ios-create"></ion-icon> Register</span> 
-           
-          </ion-card-content>
-        </ion-card>
+        <button ion-button icon-start class="button-cards" (click)="NavigateToPage()">
+          <ion-icon name="ios-create"></ion-icon>Register</button>
       </ion-col>
       <ion-col>
-        <div>
-          <ion-card color="blue" icon-start>
-            <ion-card-content >
-              <span >  <ion-icon  name="ios-paper"></ion-icon> Payments</span> 
-            </ion-card-content>
-          </ion-card>
-        </div>
+        <button ion-button icon-start class="button-cards">
+          <ion-icon name="ios-paper"></ion-icon>Payments</button>
       </ion-col>
       <ion-col>
-        <div>
-          <ion-card color="grey">
-            <ion-card-content>
-              ....
-            </ion-card-content>
-          </ion-card>
-        </div>
+        <button ion-button icon-start class="button-cards" disabled></button>
       </ion-col>
     </ion-row>
-
-    <ion-row>
+    <ion-row padding>
       <ion-col>
-        <ion-card color="grey">
-          <ion-card-content>
-            ....
-          </ion-card-content>
-        </ion-card>
+        <button ion-button icon-start class="button-cards" disabled></button>
       </ion-col>
       <ion-col>
-        <div>
-          <ion-card color="grey">
-            <ion-card-content>
-              ....
-            </ion-card-content>
-          </ion-card>
-        </div>
+        <button ion-button icon-start class="button-cards" disabled> </button>
       </ion-col>
       <ion-col>
-        <div>
-          <ion-card color="grey">
-            <ion-card-content>
-              ....
-            </ion-card-content>
-          </ion-card>
-        </div>
+        <button ion-button icon-start class="button-cards" disabled></button>
       </ion-col>
     </ion-row>
-
   </ion-grid>
-
 </ion-content>
