@@ -1,7 +1,8 @@
 import { Member } from './../../models/member.interface';
 import { DatePicker } from '@ionic-native/date-picker';
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController } from 'ionic-angular';
+// import { DatePipe } from '@angular/common'
 // import { ModalController } from 'ionic-angular';
 
 
@@ -19,7 +20,9 @@ import { IonicPage, NavController } from 'ionic-angular';
 })
 export class AddMemberPage {
 
-  constructor(private navCtrl: NavController, private datePicker: DatePicker) {
+  constructor(private navCtrl: NavController,
+              private datePicker: DatePicker,
+              private toastCtrl: ToastController) {
   }
   // @ViewChild('addMemberSlider') addMemberSlider: any;
 
@@ -39,11 +42,14 @@ export class AddMemberPage {
     this.datePicker.show({
       date: new Date(),
       mode: 'date',
+      maxDate : new Date(),
       androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
     }).then(
-      date => console.log('Got date: ', date),
+      date => this.member.DateOfBirth = date.toString(),
       err => console.log('Error occurred while getting date: ', err)
       );
+
+
   }
 
   doRefresh(refresher) {

@@ -10,6 +10,7 @@ import { DatePicker } from '@ionic-native/date-picker';
 import { MemberServiceProvider } from '../providers/member-service/member-service';
 
 import { FormsModule } from '@angular/forms'
+import { LoginServiceProvider } from '../providers/login-service/login-service';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms'
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MemberServiceProvider, DatePicker
+    MemberServiceProvider, DatePicker, LoginServiceProvider
+  
   ]
 })
 export class AppModule {}

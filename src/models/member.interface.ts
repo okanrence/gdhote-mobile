@@ -4,7 +4,7 @@ export interface Member
     LastName: string;
     MiddleName: string;
     Gender: string;
-    DateOfBirth: Date;
+    DateOfBirth: string;
     IsInitiated:boolean;
     IsMagus: boolean;
     MagusDate:Date

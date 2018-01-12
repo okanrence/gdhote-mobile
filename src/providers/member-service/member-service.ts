@@ -25,9 +25,7 @@ export class MemberServiceProvider {
     //   .subscribe(data => {
     //     console.log(data);
     //   });
-
     return "Success";
-
   }
 
 }
