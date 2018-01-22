@@ -17,7 +17,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
+  isAdmin = this.navParams.get('isAdmin');
+  
   NavigateToPage() : void{
     this.navCtrl.push('AddMemberPage');
   }

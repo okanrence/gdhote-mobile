@@ -1,4 +1,4 @@
-//import { HttpClient } from '@angular/common/http';
+import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 /*
@@ -15,13 +15,19 @@ export class LoginServiceProvider {
   }
 
   LoginUser(username: string, password: string): boolean {
-   
+
     //Do back-end call here
     let loginResult: boolean = false;
 
-    let userpwd: string = "admin";
+    const inputOnlyUser: string = "user";
+    const inputOnlyPwd: string = "user";
 
-    if (username == userpwd && password == userpwd) {
+    const adminUser: string = "admin";
+    const adminPassword: string = "admin"
+
+    if (username == inputOnlyUser && password == inputOnlyPwd) {
+      loginResult = true;
+    } else if (username == adminUser && password == adminPassword) {
       loginResult = true;
     }
     else {

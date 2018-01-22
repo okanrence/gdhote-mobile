@@ -9,7 +9,7 @@
     <ion-title>GDHOTE Mobile Hub</ion-title>
      </ion-navbar>
 </ion-header>
-<ion-content class="page-home">
+<ion-content class="page-home" padding="">
   <ion-row justify-content-center>
     <ion-col col-3>
       <div>
@@ -24,29 +24,29 @@
       </div>
     </ion-col>
   </ion-row>
-  <ion-grid >
+  <ion-grid padding>
     <ion-row justify-content-center>
-      <ion-col col-3 col-sm>
+      <ion-col col-12 col-sm>
         <button ion-button icon-start class="button-cards" (click)="NavigateToPage()">
-          <ion-icon name="ios-create"></ion-icon>Registration</button>
+          <ion-icon name="ios-create"></ion-icon>Register</button>
       </ion-col>
-      <ion-col col-3 col-sm>
+      <ion-col col-12 col-sm>
         <button ion-button icon-start class="button-cards">
           <ion-icon name="ios-paper"></ion-icon>Payments</button>
       </ion-col>
-      <ion-col col-3 col-sm>
+      <ion-col col-12 col-sm>
         <button ion-button icon-start class="button-cards" disabled></button>
       </ion-col>
     </ion-row>
     <ion-row justify-content-center >
-      <ion-col  col-3 col-sm>
+      <ion-col  col-12 col-sm>
         <button ion-button icon-start class="button-cards" disabled></button>
       </ion-col>
-      <ion-col col-3 col-sm>
+      <ion-col col-12 col-sm>
         <button ion-button icon-start class="button-cards" disabled> </button>
       </ion-col>
-      <ion-col col-3 col-sm>
-        <button ion-button icon-start class="button-cards" disabled></button>
+      <ion-col col-12 col-sm >
+        <button ion-button icon-start class="button-cards" ng-show="model.isAdmin" >{{isAdmin}}</button>
       </ion-col>
     </ion-row>
   </ion-grid>

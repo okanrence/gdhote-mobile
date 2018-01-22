@@ -4,14 +4,21 @@
       <img src="http://placehold.it/300x200" />
     </ion-col>
   </ion-row>
+  <ion-row justify-content-center>
+    <ion-col>
+      <div class="home-title">
+        GDHOTE Mobile Hub
+      </div>
+    </ion-col>
+  </ion-row>
   <div class="login-box">
     <form #loginForm="ngForm">
       <ion-row>
         <ion-col>
 
           <ion-item>
-            <ion-label floating>Email</ion-label>
-            <ion-input type="text"  [(ngModel)]="username" name="email" id="email" required></ion-input>
+            <ion-label floating>Username</ion-label>
+            <ion-input type="text"  [(ngModel)]="username" name="username" id="username" required></ion-input>
           </ion-item>
           <ion-item>
             <ion-label floating>Password</ion-label>

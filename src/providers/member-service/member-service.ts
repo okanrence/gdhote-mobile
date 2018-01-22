@@ -1,7 +1,8 @@
 import { Member } from './../../models/member.interface';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+import { AngularFireDatabase } from 'angularfire2/database';
 /*
   Generated class for the MemberServiceProvider provider.
 
@@ -11,21 +12,32 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class MemberServiceProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(private db: AngularFireDatabase) {
     console.log('Hello MemberServiceProvider Provider');
   }
 
-  SaveMember(member: Member): string {
+  private membersList = this.db.list<Member>("MembersList");
 
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+  SaveMember(member: Member, userFirebase: boolean = false): string {
 
-    // this.http.post('www.', JSON.stringify(member), {headers: headers})
-    //   .map(res => res.json())
-    //   .subscribe(data => {
-    //     console.log(data);
-    //   });
+    if (userFirebase) {
+
+      this.membersList.push(member).then(ref=> {console.log(ref.Key)
+      });
+    }
+    else {
+      
+      // let headers = new Headers();
+      // headers.append('Content-Type', 'application/json');
+
+      // this.http.post('www.', JSON.stringify(member), )
+      //   .map(res => res.json())
+      //   .subscribe(data => {
+      //     console.log(data);
+      //   });
+
+    }
+
     return "Success";
   }
-
 }

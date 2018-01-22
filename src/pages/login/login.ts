@@ -1,6 +1,9 @@
+import { ToastServiceProvider } from './../../providers/toast-service/toast-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { LoginServiceProvider } from '../../providers/login-service/login-service'
+import { Duration } from '../../providers/login-service/toast-enums';
+
 
 /**
  * Generated class for the LoginPage page.
@@ -17,28 +20,20 @@ import { LoginServiceProvider } from '../../providers/login-service/login-servic
 export class LoginPage {
 
   constructor(private navCtrl: NavController,
-   private loginCtrl: LoginServiceProvider,
-    private toastCtrl: ToastController) {
+    private loginCtrl: LoginServiceProvider,
+    private toastService: ToastServiceProvider) {
   }
   username;
   password;
   LoginUser(): void {
 
     let response = this.loginCtrl.LoginUser(this.username, this.password);
-
     if (response) {
-      this.navCtrl.push('HomePage');
+      let isAdmin = this.username == "admin";
+      this.navCtrl.push('HomePage', { isAdmin: isAdmin });
     } else {
-      this.showToast("Invalid Username/Password");
+      this.toastService.show("Invalid Username/Password", 5000, 'top');
       this.password = "";
     }
-  }
-
-  showToast(message: string) {
-    this.toastCtrl.create({
-      message: message,
-      duration: 5000,
-      position: 'bottom'
-    }).present();
   }
 }

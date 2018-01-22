@@ -27,6 +27,7 @@ export class AddMemberPage {
   // @ViewChild('addMemberSlider') addMemberSlider: any;
 
   member: Member = {
+    Key: null,
     FirstName: "",
     LastName: "",
     MiddleName: "",
@@ -34,7 +35,9 @@ export class AddMemberPage {
     DateOfBirth: null,
     IsInitiated: false,
     IsMagus: false,
-    MagusDate: null
+    MagusDate: null,
+    PhoneNumber : "",
+    EmailAddress: ""
   };
 
   showDate(): void {
@@ -62,6 +65,8 @@ export class AddMemberPage {
       this.member.IsInitiated = false;
       this.member.IsMagus = false;
       this.member.MiddleName = "";
+      this.member.PhoneNumber = "";
+      this.member.EmailAddress = "";
       this.member.LastName = "";
       this.member.MagusDate = null;
       console.log('Async operation has ended');

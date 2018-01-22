@@ -14,12 +14,22 @@
   </ion-item>
     <ion-item>
       <ion-label floating>Middlename</ion-label>
-      <ion-input type="text" id="middlename" name="middlename" [(ngModel)]="member.MiddleName" required></ion-input>
+      <ion-input type="text" id="middlename" name="middlename" [(ngModel)]="member.MiddleName"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Lastname</ion-label>
       <ion-input type="text" id="lastname" name="lastname"  [(ngModel)]="member.LastName" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Phone Number</ion-label>
+      <ion-input type="number" id="phonenumber" name="phonenumber"  [(ngModel)]="member.PhoneNumber" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" id="email" name="email"  [(ngModel)]="member.EmailAddress" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" required></ion-input>
     </ion-item>
 
     <ion-item>

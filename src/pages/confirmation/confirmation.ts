@@ -1,6 +1,8 @@
+import { MemberServiceProvider } from './../../providers/member-service/member-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { Member } from './../../models/member.interface';
+import { ToastServiceProvider } from '../../providers/toast-service/toast-service';
 
 
 /**
@@ -18,14 +20,16 @@ import { Member } from './../../models/member.interface';
 export class ConfirmationPage {
 
   constructor(private navCtrl: NavController,
-     private navParams: NavParams,
-     private loadingCtrl: LoadingController,
-     private toastCtrl: ToastController ) {
+    private navParams: NavParams,
+    private loadingCtrl: LoadingController,
+    private toastService: ToastServiceProvider,
+    private memberService: MemberServiceProvider) {
   }
 
   navMember = this.navParams.get('member');
 
   member: Member = {
+    Key: this.navMember.Key,
     FirstName: this.navMember.FirstName,
     LastName: this.navMember.LastName,
     MiddleName: this.navMember.MiddleName,
@@ -34,32 +38,31 @@ export class ConfirmationPage {
     IsInitiated: this.navMember.IsInitiated,
     IsMagus: this.navMember.IsMagus,
     MagusDate: this.navMember.MagusDate,
+    PhoneNumber: this.navMember.PhoneNumber,
+    EmailAddress: this.navMember.EmailAddress,
   };
 
   Back(): void {
     this.navCtrl.pop();
   }
 
-  showAlert(message:string) {
-    this.toastCtrl.create({
-      message: 'Member details was saved successfully',
-      duration: 3000,
-      position: 'top'
-    }).present();
-    // alert.present();
-  }
   SaveMember(member: Member): void {
     let loader = this.loadingCtrl.create({
       content: "Saving, please wait...",
-       duration: 3000, spinner : 'ios'
+      duration: 3000, spinner: 'ios'
     });
-    loader.present().then(() => { 
+    loader.present().then(() => {
       //Call backend service here
       console.log(JSON.stringify(member));
-      this.showAlert('Your details have been saved successfully');
+     var response = this.memberService.SaveMember(member, true);
+     if  (response == "Success"){
+      this.toastService.show('Your details have been registered successfully');
       this.navCtrl.push("HomePage");
-  
-  });
+     }else{
+      this.toastService.show('An Error Occured, please try again');
+      this.navCtrl.pop();
+     }
+    });
     loader.dismiss();
   }
 
