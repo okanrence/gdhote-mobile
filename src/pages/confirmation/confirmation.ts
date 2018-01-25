@@ -1,8 +1,8 @@
+import { NotificationsProvider } from './../../providers/notifications/notifications';
 import { MemberServiceProvider } from './../../providers/member-service/member-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Member } from './../../models/member.interface';
-import { ToastServiceProvider } from '../../providers/toast-service/toast-service';
 
 
 /**
@@ -21,25 +21,24 @@ export class ConfirmationPage {
 
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
-    private loadingCtrl: LoadingController,
-    private toastService: ToastServiceProvider,
-    private memberService: MemberServiceProvider) {
+    private notificationsCtrl: NotificationsProvider,
+    private memberCtrl: MemberServiceProvider) {
   }
 
   navMember = this.navParams.get('member');
 
   member: Member = {
     Key: this.navMember.Key,
-    FirstName: this.navMember.FirstName,
-    LastName: this.navMember.LastName,
-    MiddleName: this.navMember.MiddleName,
-    Gender: this.navMember.Gender,
-    DateOfBirth: this.navMember.DateOfBirth,
-    IsInitiated: this.navMember.IsInitiated,
-    IsMagus: this.navMember.IsMagus,
-    MagusDate: this.navMember.MagusDate,
-    PhoneNumber: this.navMember.PhoneNumber,
-    EmailAddress: this.navMember.EmailAddress,
+    firstName: this.navMember.firstName,
+    surname: this.navMember.surname,
+    middleName: this.navMember.middleName,
+    gender: this.navMember.gender,
+    dateOfBirth: this.navMember.dateOfBirth,
+    initiationFlag: this.navMember.initiationFlag,
+    magusFlag: this.navMember.magusFlag,
+    magusDate: this.navMember.magusDate,
+    mobileNumber: this.navMember.mobileNumber,
+    emailAddress: this.navMember.emailAddress,
   };
 
   Back(): void {
@@ -47,23 +46,30 @@ export class ConfirmationPage {
   }
 
   SaveMember(member: Member): void {
-    let loader = this.loadingCtrl.create({
-      content: "Saving, please wait...",
-      duration: 3000, spinner: 'ios'
+    console.log(member);
+    let loading = this.notificationsCtrl.showLoading("please wait...")
+    loading.present().then(() => {
+
+      this.memberCtrl.SaveMember(this.member)
+        .subscribe(data => {
+          console.log(data);
+          if (data.errorCode == '00') {
+            this.notificationsCtrl.showToast('Your details have been registered successfully').then(() =>
+              this.navCtrl.push("HomePage"));
+          }
+          else {
+            this.notificationsCtrl.showToast(data.errorMessage, 5000)
+          }
+        },
+
+        error => {
+          loading.dismiss();
+          this.notificationsCtrl.showAlert(error);
+
+        },
+
+        () => loading.dismiss());
     });
-    loader.present().then(() => {
-      //Call backend service here
-      console.log(JSON.stringify(member));
-     var response = this.memberService.SaveMember(member, true);
-     if  (response == "Success"){
-      this.toastService.show('Your details have been registered successfully');
-      this.navCtrl.push("HomePage");
-     }else{
-      this.toastService.show('An Error Occured, please try again');
-      this.navCtrl.pop();
-     }
-    });
-    loader.dismiss();
   }
 
 }

@@ -1,8 +1,9 @@
+import { NotificationsProvider } from './../../providers/notifications/notifications';
 import { Member } from './../../models/member.interface';
-import { DatePicker } from '@ionic-native/date-picker';
+// import { DatePicker } from '@ionic-native/date-picker';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
-// import { DatePipe } from '@angular/common'
+import { IonicPage, NavController } from 'ionic-angular';
+
 // import { ModalController } from 'ionic-angular';
 
 
@@ -20,62 +21,59 @@ import { IonicPage, NavController, ToastController } from 'ionic-angular';
 })
 export class AddMemberPage {
 
+  dob_year: number;
+  yearList: number[];
+  daysList: number[];
+  dob_day: number;
+  dob_month: string = "";
+
+  magus_year: number;
+  magus_day: number;
+  magus_month: string = "";
+  // magus_yearList: number[];
+  // magus_daysList: number[];
+
+  member = new Member(0);
   constructor(private navCtrl: NavController,
-              private datePicker: DatePicker,
-              private toastCtrl: ToastController) {
+    private notificationsCtrl: NotificationsProvider) {
+    this.populateDateList();
   }
-  // @ViewChild('addMemberSlider') addMemberSlider: any;
 
-  member: Member = {
-    Key: null,
-    FirstName: "",
-    LastName: "",
-    MiddleName: "",
-    Gender: "",
-    DateOfBirth: null,
-    IsInitiated: false,
-    IsMagus: false,
-    MagusDate: null,
-    PhoneNumber : "",
-    EmailAddress: ""
-  };
+  populateDateList(): void {
+    this.yearList = [];
+    this.daysList = [];
 
-  showDate(): void {
+    let i = new Date().getFullYear() + 1;
 
-    this.datePicker.show({
-      date: new Date(),
-      mode: 'date',
-      maxDate : new Date(),
-      androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
-    }).then(
-      date => this.member.DateOfBirth = date.toString(),
-      err => console.log('Error occurred while getting date: ', err)
-      );
+    while (i-- && i >= 1904) {
+      this.yearList.push(i);
+    }
 
-
+    for (let j = 1; j <= 31; j++) {
+      this.daysList.push(j);
+    }
   }
 
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
-    
     setTimeout(() => {
-      this.member.DateOfBirth = null;
-      this.member.FirstName = "";
-      this.member.Gender = "";
-      this.member.IsInitiated = false;
-      this.member.IsMagus = false;
-      this.member.MiddleName = "";
-      this.member.PhoneNumber = "";
-      this.member.EmailAddress = "";
-      this.member.LastName = "";
-      this.member.MagusDate = null;
-      console.log('Async operation has ended');
+      this.navCtrl.setRoot(this.navCtrl.getActive().component);
       refresher.complete();
     }, 1000);
   }
 
   NextPage() {
-    this.navCtrl.push("ConfirmationPage", { member: this.member });
+    let loader: any = this.notificationsCtrl.showLoading("..please wait..");
+    loader.present().then(() => {
+      if (this.member.magusFlag) {
+        this.member.magusDate = `${this.magus_day.toString()}-${this.magus_month}-${this.magus_year.toString()}`
+      } else {
+        this.member.magusDate = null;
+      }
+      this.member.dateOfBirth = `${this.dob_day.toString()}-${this.dob_month}-${this.dob_year.toString()}`
+      this.navCtrl.push("ConfirmationPage", { member: this.member });
+    });
+
+    loader.dismiss();
   }
 }
 

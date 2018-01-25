@@ -1,5 +1,6 @@
+import { endpoints } from './../endpoints';
 import { Member } from './../../models/member.interface';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -12,32 +13,27 @@ import { AngularFireDatabase } from 'angularfire2/database';
 @Injectable()
 export class MemberServiceProvider {
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private http: Http) {
     console.log('Hello MemberServiceProvider Provider');
   }
 
   private membersList = this.db.list<Member>("MembersList");
 
-  SaveMember(member: Member, userFirebase: boolean = false): string {
+  SaveMember(member: Member): any {
 
-    if (userFirebase) {
+    // if (userFirebase) {
+    //   return this.membersList.push(member);
+    // }
+    // else {
+      var headers = new Headers();
+      headers.append("Accept", 'application/json');
+      headers.append('Content-Type', 'application/json');
+      let options = new RequestOptions({ headers: headers });
 
-      this.membersList.push(member).then(ref=> {console.log(ref.Key)
-      });
-    }
-    else {
-      
-      // let headers = new Headers();
-      // headers.append('Content-Type', 'application/json');
+      let url = endpoints.baseUrl + endpoints.createMember
 
-      // this.http.post('www.', JSON.stringify(member), )
-      //   .map(res => res.json())
-      //   .subscribe(data => {
-      //     console.log(data);
-      //   });
-
-    }
-
-    return "Success";
+      return this.http.post(url, member, options)
+        .map(res => res.json())
+    // }
   }
 }

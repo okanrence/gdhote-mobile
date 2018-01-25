@@ -1,8 +1,8 @@
-import { ToastServiceProvider } from './../../providers/toast-service/toast-service';
+import { NotificationsProvider } from './../../providers/notifications/notifications';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { LoginServiceProvider } from '../../providers/login-service/login-service'
-import { Duration } from '../../providers/login-service/toast-enums';
+import { Events } from 'ionic-angular/util/events';
 
 
 /**
@@ -21,19 +21,38 @@ export class LoginPage {
 
   constructor(private navCtrl: NavController,
     private loginCtrl: LoginServiceProvider,
-    private toastService: ToastServiceProvider) {
+    private notificationCtrl: NotificationsProvider,
+    private eventsCtrl: Events) {
   }
+
   username;
   password;
-  LoginUser(): void {
+  isAdmin;
 
-    let response = this.loginCtrl.LoginUser(this.username, this.password);
-    if (response) {
-      let isAdmin = this.username == "admin";
-      this.navCtrl.push('HomePage', { isAdmin: isAdmin });
-    } else {
-      this.toastService.show("Invalid Username/Password", 5000, 'top');
-      this.password = "";
-    }
+  LoginUser(): void {
+    let loading = this.notificationCtrl.showLoading("..please wait..");
+
+    loading.present().then(() => {
+      this.loginCtrl.LoginUser(this.username, this.password)
+        .subscribe(user => {
+          console.log(user);
+          if (user.errorCode == '00') {
+            this.eventsCtrl.publish("user:login", user, Date.now());
+            this.navCtrl.push('HomePage');
+          }
+          else {
+            this.notificationCtrl.showToast(user.errorMessage, 5000, 'top')
+              .then(() => this.password = "");
+          }
+        },
+
+        error => {
+          loading.dismiss();
+          this.notificationCtrl.showAlert(error);
+
+        },
+
+        () => loading.dismiss());
+    });
   }
 }

@@ -19,42 +19,62 @@
   <ion-item>
     <ion-label>Firstname</ion-label>
     <ion-label>
-      <h1>{{member.FirstName}}</h1>
+      <h1>{{member.firstName}}</h1>
     </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>Middlename</ion-label>
     <ion-label>
-      <h1>{{member.MiddleName}}</h1>
+      <h1>{{member.middleName}}</h1>
     </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>Lastname</ion-label>
     <ion-label>
-      <h1>{{member.LastName}}</h1>
+      <h1>{{member.surname}}</h1>
     </ion-label>
   </ion-item>
 
+  <ion-item>
+    <ion-label>PhoneNumber</ion-label>
+    <ion-label>
+      <h1>{{member.mobileNumber}}</h1>
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-label>
+      <h1>{{member.emailAddress}}</h1>
+    </ion-label>
+  </ion-item>
   <ion-item>
     <ion-label>Date of birth</ion-label>
     <ion-label>
-      <h1>{{member.DateOfBirth}}</h1>
+      <h1>{{member.dateOfBirth}}</h1>
     </ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label>Has been initiated</ion-label>
+    <ion-label>Initiated</ion-label>
     <ion-label>
-      <h1>{{member.IsInitiated ? 'Yes' : 'No'}}</h1>
+      <h1>{{member.initiationFlag ? 'Yes' : 'No'}}</h1>
     </ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label>Magus? </ion-label>
+    <ion-label>Magus </ion-label>
     <ion-label>
-      <h1>{{member.IsMagus ? 'Yes' : 'No'}}</h1>
+      <h1>{{member.magusFlag ? 'Yes' : 'No'}}</h1>
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="magusFlag" >
+    <ion-label>Magus Date </ion-label>
+    <ion-label>
+      <h1>{{member.dateOfBirth}}</h1>
     </ion-label>
   </ion-item>
 

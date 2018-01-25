@@ -1,5 +1,7 @@
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { endpoints } from '../endpoints';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 /*
   Generated class for the LoginServiceProvider provider.
@@ -10,30 +12,24 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class LoginServiceProvider {
 
-  constructor() {
+  constructor(private http: Http) {
     console.log('Hello LoginServiceProvider Provider');
   }
 
-  LoginUser(username: string, password: string): boolean {
+  LoginUser(username: string, password: string): any {
+    var headers = new Headers();
+    headers.append("Accept", 'application/json');
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
 
-    //Do back-end call here
-    let loginResult: boolean = false;
-
-    const inputOnlyUser: string = "user";
-    const inputOnlyPwd: string = "user";
-
-    const adminUser: string = "admin";
-    const adminPassword: string = "admin"
-
-    if (username == inputOnlyUser && password == inputOnlyPwd) {
-      loginResult = true;
-    } else if (username == adminUser && password == adminPassword) {
-      loginResult = true;
-    }
-    else {
-      loginResult = false;
+    let postParams = {
+      username: username,
+      password: password
     }
 
-    return loginResult;
+    let url = endpoints.baseUrl + endpoints.login
+
+    return this.http.post(url, postParams, options)
+      .map(res => res.json())
   }
 }

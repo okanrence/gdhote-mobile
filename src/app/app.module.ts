@@ -1,3 +1,4 @@
+// import { Network } from '@ionic-native/network';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -16,7 +17,9 @@ import { LoginServiceProvider } from '../providers/login-service/login-service';
 import { AngularFireModule } from 'angularfire2'
 
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database'
-import { ToastServiceProvider } from '../providers/toast-service/toast-service';
+
+import { HttpModule } from '@angular/http'
+import { NotificationsProvider } from '../providers/notifications/notifications';
 
 
 @NgModule({
@@ -28,7 +31,7 @@ import { ToastServiceProvider } from '../providers/toast-service/toast-service';
     IonicModule.forRoot(MyApp),
     FormsModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,7 +42,7 @@ import { ToastServiceProvider } from '../providers/toast-service/toast-service';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MemberServiceProvider, DatePicker, LoginServiceProvider,
-    ToastServiceProvider
+    NotificationsProvider
 
   ]
 })
