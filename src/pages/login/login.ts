@@ -34,22 +34,21 @@ export class LoginPage {
 
     loading.present().then(() => {
       this.loginCtrl.LoginUser(this.username, this.password)
-        .subscribe(user => {
-          console.log(user);
-          if (user.errorCode == '00') {
-            this.eventsCtrl.publish("user:login", user, Date.now());
+        .subscribe(res => {
+          console.log(res);
+          if (res.errorCode == '00') {
             this.navCtrl.push('HomePage');
           }
           else {
-            this.notificationCtrl.showToast(user.errorMessage, 5000, 'top')
+            this.notificationCtrl.showToast(res.errorMessage, 5000, 'top')
               .then(() => this.password = "");
           }
         },
 
         error => {
           loading.dismiss();
-          this.notificationCtrl.showAlert(error);
-
+          console.log("Error Response " + JSON.stringify(error))
+          this.notificationCtrl.showToast(`Error:${error.message}; Details:${error.exceptionMessage}`, 5000, 'top');
         },
 
         () => loading.dismiss());

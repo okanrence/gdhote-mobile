@@ -1,11 +1,8 @@
+import { CommonServicesProvider } from './../../providers/common-services/common-services';
 import { NotificationsProvider } from './../../providers/notifications/notifications';
 import { Member } from './../../models/member.interface';
-// import { DatePicker } from '@ionic-native/date-picker';
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-
-// import { ModalController } from 'ionic-angular';
-
 
 /**
  * Generated class for the AddMemberPage page.
@@ -21,21 +18,24 @@ import { IonicPage, NavController } from 'ionic-angular';
 })
 export class AddMemberPage {
 
-  dob_year: number;
+  //TODO: Find a better way to do this date thing
   yearList: number[];
   daysList: number[];
+
+  dob_year: number;
   dob_day: number;
   dob_month: string = "";
 
   magus_year: number;
   magus_day: number;
   magus_month: string = "";
-  // magus_yearList: number[];
-  // magus_daysList: number[];
 
-  member = new Member(0);
+  member = new Member();
   constructor(private navCtrl: NavController,
-    private notificationsCtrl: NotificationsProvider) {
+    private notificationsCtrl: NotificationsProvider,
+    private commonCtrl: CommonServicesProvider
+  )
+  {
     this.populateDateList();
   }
 
@@ -64,16 +64,16 @@ export class AddMemberPage {
   NextPage() {
     let loader: any = this.notificationsCtrl.showLoading("..please wait..");
     loader.present().then(() => {
-      if (this.member.magusFlag) {
-        this.member.magusDate = `${this.magus_day.toString()}-${this.magus_month}-${this.magus_year.toString()}`
-      } else {
-        this.member.magusDate = null;
-      }
+      this.member.magusDate = `${this.commonCtrl.checkForNull(this.magus_day) ? "01" : this.magus_day.toString()}-${this.magus_month == "" ? "Jan" : this.magus_month}-${this.commonCtrl.checkForNull(this.magus_year) ? "1900" : this.magus_year.toString()}`;
       this.member.dateOfBirth = `${this.dob_day.toString()}-${this.dob_month}-${this.dob_year.toString()}`
+     console.log(JSON.stringify(this.member));
       this.navCtrl.push("ConfirmationPage", { member: this.member });
+
     });
 
     loader.dismiss();
   }
+
+
 }
 

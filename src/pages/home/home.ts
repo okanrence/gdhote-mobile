@@ -1,3 +1,4 @@
+import { NotificationsProvider } from './../../providers/notifications/notifications';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Events } from 'ionic-angular/util/events';
@@ -19,23 +20,17 @@ export class HomePage {
   isAdmin;
   userName;
   loginTime;
-  constructor(private navCtrl: NavController,
-    private navParams: NavParams,
-    private eventsCtrl: Events) {
+  constructor(private navCtrl: NavController, private notificationCtrl: NotificationsProvider) {
   }
 
 
-  // ionViewDidLoad() {
 
-  //   this.eventsCtrl.subscribe('user:created', (user, time) => {
-  //     this.isAdmin = user.userName == "admin";
-  //     this.userName = user.userName
-  //     this.loginTime = time
-  //     console.log("At home page" + JSON.stringify(user));
-  //   });
-  //}
-  NavigateToPage(): void {
-    this.navCtrl.push('AddMemberPage');
+  NavigateToPage(page:string): void {
+    this.navCtrl.push(page);
+  }
+
+  ShowComingSoon(): void{
+    this.notificationCtrl.showToast("Keep Calm, Coming Soon", 5000, "bottom");
   }
 
 }

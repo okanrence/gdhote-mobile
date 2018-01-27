@@ -1,5 +1,4 @@
 export class Member {
-    Key: number;
     firstName: string;
     surname: string;
     middleName: string;
@@ -10,9 +9,9 @@ export class Member {
     initiationFlag: boolean;
     magusFlag: boolean;
     magusDate: string
+    maritalStatus: string
 
-    constructor(key: number) {
-        this.Key = key;
+    constructor() {
         this.magusFlag = false;
         this.initiationFlag = false;
     }

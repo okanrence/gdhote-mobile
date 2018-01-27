@@ -20,6 +20,8 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 
 import { HttpModule } from '@angular/http'
 import { NotificationsProvider } from '../providers/notifications/notifications';
+import { CommonServicesProvider } from '../providers/common-services/common-services';
+import { HttpServiceProvider } from '../providers/http-service/http-service';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { NotificationsProvider } from '../providers/notifications/notifications'
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MemberServiceProvider, DatePicker, LoginServiceProvider,
-    NotificationsProvider
+    NotificationsProvider,
+    CommonServicesProvider,
+    HttpServiceProvider
 
   ]
 })

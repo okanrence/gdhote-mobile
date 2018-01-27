@@ -14,10 +14,11 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <h3>Add Member</h3>
+  <h3>Register Member</h3>
+  <h6><i>Please note that all fields marked with asterisks (*) are mandatory</i></h6>
   <form #memberForm="ngForm">
   <ion-item>
-    <ion-label floating>Firstname</ion-label>
+    <ion-label floating>Firstname*</ion-label>
     <ion-input type="text"   [(ngModel)]="member.firstName"  id="firstname" name="firstname" required></ion-input>
   </ion-item>
     <ion-item>
@@ -26,22 +27,22 @@
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Lastname</ion-label>
+      <ion-label floating>Surname*</ion-label>
       <ion-input type="text" id="lastname" name="lastname"  [(ngModel)]="member.surname" required></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Phone Number</ion-label>
+      <ion-label floating>Phone Number*</ion-label>
       <ion-input type="number" id="mobileNumber" name="phonenumber" [(ngModel)]="member.mobileNumber" required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input type="text" id="email" name="email"  [(ngModel)]="member.emailAddress" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" required></ion-input>
+      <ion-input type="text" id="email" name="email"  [(ngModel)]="member.emailAddress" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
     </ion-item>
     <ion-row padding>
         <ion-col col-3>
-            <ion-label floating style="color:darkgrey; font-size:16px">Date of Birth</ion-label>
+            <ion-label floating class="grey-label">Date of Birth*</ion-label>
         </ion-col>
         <ion-col col-3>
             <ion-item>
@@ -82,26 +83,38 @@
     </ion-row>
 
     <ion-item>
-      <ion-label floating>Gender</ion-label>
-      <ion-select [(ngModel)]="member.Gender" id="gender" name="gender" required >
-        <ion-option value="f">Female</ion-option>
-        <ion-option value="m">Male</ion-option>
+      <ion-label floating>Gender*</ion-label>
+      <ion-select [(ngModel)]="member.gender" id="gender" name="gender" required >
+        <ion-option value="F">Female</ion-option>
+        <ion-option value="M">Male</ion-option>
       </ion-select>
     </ion-item>
 
+
+    <ion-item>
+      <ion-label floating>Marital Status*</ion-label>
+      <ion-select [(ngModel)]="member.maritalStatus" id="maritalStatus" name="maritalStatus" required >
+        <ion-option value="S">Single</ion-option>
+        <ion-option value="M">Married</ion-option>
+        <ion-option value="D">Divorced</ion-option>
+        <ion-option value="W">Widowed</ion-option>
+      </ion-select>
+    </ion-item>
+
+
     <ion-item padding>
-      <ion-label style="color:darkgrey; font-size:16px">Have you been initiated?</ion-label>
-      <ion-toggle [(ngModel)]="member.IsInitiated" name="initiated"></ion-toggle>
+      <ion-label class="grey-label">Have you been initiated?</ion-label>
+      <ion-toggle [(ngModel)]="member.initiationFlag" name="initiated"></ion-toggle>
     </ion-item>
 
     <ion-item padding>
-      <ion-label style="color:darkgrey; font-size:16px">Are you a Magus?</ion-label>
-      <ion-toggle [(ngModel)]="member.IsMagus" name="magus"></ion-toggle>
+      <ion-label class="grey-label">Are you a Magus?</ion-label>
+      <ion-toggle [(ngModel)]="member.magusFlag" name="magus"></ion-toggle>
     </ion-item>
 
-    <ion-row padding *ngIf="member.IsMagus">
+    <ion-row padding *ngIf="member.magusFlag">
       <ion-col col-3>
-          <ion-label floating style="color:darkgrey; font-size:16px">Magus Date</ion-label>
+          <ion-label floating class="grey-label">Magus Date</ion-label>
       </ion-col>
       <ion-col col-3>
           <ion-item>
@@ -132,13 +145,12 @@
       </ion-col>
       <ion-col col-3>
           <ion-item>
-              <ion-label floating>Year</ion-label>
+              <ion-label floating>Year*</ion-label>
               <ion-select [(ngModel)]="magus_year" id="magus_year" name="magus_year" required>
                   <ion-option *ngFor="let item of yearList" [value] = "item">{{item}}</ion-option>
               </ion-select>
             </ion-item>
-      </ion-col>
-      
+      </ion-col>   
   </ion-row>
 
     <button ion-button block large icon-start color="blue" (click)="NextPage()" [disabled]="!memberForm.form.valid">Next
