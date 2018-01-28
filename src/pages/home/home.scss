@@ -1,20 +1,24 @@
-.page-home {
-    margin: 0px;
-}
+page-home{
 
-.button-cards {
-    font-size: 22px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-radius: 5px;
-    width: 90%;
-    height: 150px;
-    margin: 20px;
-    background-color: #46887f;
-    color: white;
-}
 
-.home-title {
-    color: #46887f;
-    font-size: 30px;
-    text-align: center;
+    .page-home {
+        margin: 0px;
+    }
+    
+    .button-cards {
+        font-size: 22px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border-radius: 5px;
+        width: 90%;
+        height: 150px;
+        margin: 20px;
+        background-color: #117180;
+        color: white;
+    }
+    
+    .home-title {
+        color : #00b2cc;
+        font-size: 30px;
+        text-align: center;
+    }
 }

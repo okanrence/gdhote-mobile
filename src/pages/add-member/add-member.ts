@@ -1,5 +1,5 @@
 import { CommonServicesProvider } from './../../providers/common-services/common-services';
-import { NotificationsProvider } from './../../providers/notifications/notifications';
+import { NotificationsServiceProvider } from './../../providers/notifications-service/notifications-service';
 import { Member } from './../../models/member.interface';
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
@@ -32,7 +32,7 @@ export class AddMemberPage {
 
   member = new Member();
   constructor(private navCtrl: NavController,
-    private notificationsCtrl: NotificationsProvider,
+    private notificationsCtrl: NotificationsServiceProvider,
     private commonCtrl: CommonServicesProvider
   )
   {

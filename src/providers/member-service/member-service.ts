@@ -1,10 +1,9 @@
 import { HttpMethod } from './../http-service/http-methods.enums';
 import { endpoints } from './../endpoints';
 import { Member } from './../../models/member.interface';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { HttpServiceProvider } from '../http-service/http-service';
 /*
   Generated class for the MemberServiceProvider provider.
@@ -15,7 +14,7 @@ import { HttpServiceProvider } from '../http-service/http-service';
 @Injectable()
 export class MemberServiceProvider {
 
-  constructor(private db: AngularFireDatabase, private httpCtrl: HttpServiceProvider) {
+  constructor(private httpCtrl: HttpServiceProvider) {
     console.log('Hello MemberServiceProvider Provider');
   }
 

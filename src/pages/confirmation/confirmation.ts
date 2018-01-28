@@ -1,5 +1,5 @@
 import { CommonServicesProvider } from './../../providers/common-services/common-services';
-import { NotificationsProvider } from './../../providers/notifications/notifications';
+import { NotificationsServiceProvider } from './../../providers/notifications-service/notifications-service';
 import { MemberServiceProvider } from './../../providers/member-service/member-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -24,7 +24,7 @@ export class ConfirmationPage {
 maritalStatusCode: string;
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
-    private notificationsCtrl: NotificationsProvider,
+    private notificationsCtrl: NotificationsServiceProvider,
     private memberCtrl: MemberServiceProvider,
   private commonCtrl: CommonServicesProvider) {
     this.member = this.navParams.get('member');
@@ -48,13 +48,17 @@ maritalStatusCode: string;
               this.navCtrl.push("HomePage"));
           }
           else {
-            this.notificationsCtrl.showToast(data.errorMessage, 5000)
+            this.notificationsCtrl.showAlert(data.errorMessage, "Error");
           }
         },
 
         error => {
           loading.dismiss();
-          this.notificationsCtrl.showAlert(error);
+          // console.log(error);
+          // console.log(JSON.stringify(error));
+          // console.log("Error.body" + JSON.stringify(error.body));
+          // console.log("Error._body", + JSON.stringify(error._body));
+          this.notificationsCtrl.showAlert(error, "Error");
 
         },
 

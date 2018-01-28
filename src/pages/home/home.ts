@@ -1,7 +1,7 @@
-import { NotificationsProvider } from './../../providers/notifications/notifications';
+import { NotificationsServiceProvider } from './../../providers/notifications-service/notifications-service';
+
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Events } from 'ionic-angular/util/events';
+import { IonicPage, NavController } from 'ionic-angular';
 
 /**
  * Generated class for the HomePage page.
@@ -20,7 +20,7 @@ export class HomePage {
   isAdmin;
   userName;
   loginTime;
-  constructor(private navCtrl: NavController, private notificationCtrl: NotificationsProvider) {
+  constructor(private navCtrl: NavController, private notificationCtrl: NotificationsServiceProvider) {
   }
 
 

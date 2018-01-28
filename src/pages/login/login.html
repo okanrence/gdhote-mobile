@@ -1,24 +1,23 @@
 <ion-content color="blue" class="ion-content" padding>
-  <ion-row justify-content-center>
-    <ion-col col-3>
-      <img src="http://placehold.it/300x200" />
-    </ion-col>
-  </ion-row>
-  <ion-row justify-content-center>
-    <ion-col>
-      <div class="home-title">
-        GDHOTE Mobile Hub
-      </div>
-    </ion-col>
-  </ion-row>
-  <div class="login-box">
+
+  <div padding class="center">
+    <div>
+      <img src="../../assets/imgs/logo.png" class="login-img"/>
+    </div>
+    <div class="page-title" padding><b>
+      GDHOTE Kiosk
+    </b>
+    </div>
+  </div>
+
+  <div class="login-box" class="center">
     <form #loginForm="ngForm">
       <ion-row>
         <ion-col>
 
           <ion-item>
             <ion-label floating>Username</ion-label>
-            <ion-input type="text"  [(ngModel)]="username" name="username" id="username" required></ion-input>
+            <ion-input type="text" [(ngModel)]="username" name="username" id="username" required></ion-input>
           </ion-item>
           <ion-item>
             <ion-label floating>Password</ion-label>
@@ -28,8 +27,8 @@
       </ion-row>
 
       <ion-row>
-        <ion-col class="signup-col">
-          <button ion-button class="submit-btn" block color="blue" large (click)="LoginUser()" [disabled]="!loginForm.form.valid" type="submit">Login</button>
+        <ion-col>
+          <button ion-button class="submit-btn" block color="dark" large (click)="LoginUser()" [disabled]="!loginForm.form.valid" type="submit">Login</button>
         </ion-col>
       </ion-row>
 

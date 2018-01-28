@@ -1,8 +1,8 @@
-import { NotificationsProvider } from './../../providers/notifications/notifications';
+import { NotificationsServiceProvider } from './../../providers/notifications-service/notifications-service';
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { LoginServiceProvider } from '../../providers/login-service/login-service'
-import { Events } from 'ionic-angular/util/events';
 
 
 /**
@@ -21,8 +21,8 @@ export class LoginPage {
 
   constructor(private navCtrl: NavController,
     private loginCtrl: LoginServiceProvider,
-    private notificationCtrl: NotificationsProvider,
-    private eventsCtrl: Events) {
+    private notificationCtrl: NotificationsServiceProvider,
+   ) {
   }
 
   username;
@@ -48,7 +48,7 @@ export class LoginPage {
         error => {
           loading.dismiss();
           console.log("Error Response " + JSON.stringify(error))
-          this.notificationCtrl.showToast(`Error:${error.message}; Details:${error.exceptionMessage}`, 5000, 'top');
+          this.notificationCtrl.showAlert(error);
         },
 
         () => loading.dismiss());

@@ -1,4 +1,13 @@
-.grey-label {
-    color:darkgrey;
-     font-size:16px
- }
+page-add-member {
+    .grey-label {
+        color: darkgrey;
+        font-size: 16px
+    }
+    .left {
+        width: 90%;
+        text-align: left;
+        margin-right: auto;
+         // margin-left: auto;
+      //  display: block;
+    }
+}

@@ -1,8 +1,7 @@
 import { HttpMethod } from './../http-service/http-methods.enums';
-import { Response, Headers } from '@angular/http';
+import { Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { endpoints } from '../endpoints';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { HttpServiceProvider } from '../http-service/http-service';
 
 /*

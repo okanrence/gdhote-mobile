@@ -1,4 +1,3 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { ToastController, LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -11,7 +10,7 @@ import { AlertController } from 'ionic-angular/components/alert/alert-controller
   and Angular DI.
 */
 @Injectable()
-export class NotificationsProvider {
+export class NotificationsServiceProvider {
 
   constructor(private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
@@ -38,6 +37,6 @@ export class NotificationsProvider {
       title: title,
       subTitle: message,
       buttons: buttons
-    });
+    }).present();
   }
 }

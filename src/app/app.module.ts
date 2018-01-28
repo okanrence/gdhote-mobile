@@ -16,10 +16,11 @@ import { LoginServiceProvider } from '../providers/login-service/login-service';
 
 import { AngularFireModule } from 'angularfire2'
 
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database'
+import { AngularFireDatabaseModule } from 'angularfire2/database'
 
 import { HttpModule } from '@angular/http'
-import { NotificationsProvider } from '../providers/notifications/notifications';
+import { NotificationsServiceProvider } from './../providers/notifications-service/notifications-service';
+
 import { CommonServicesProvider } from '../providers/common-services/common-services';
 import { HttpServiceProvider } from '../providers/http-service/http-service';
 
@@ -44,7 +45,7 @@ import { HttpServiceProvider } from '../providers/http-service/http-service';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MemberServiceProvider, DatePicker, LoginServiceProvider,
-    NotificationsProvider,
+    NotificationsServiceProvider,
     CommonServicesProvider,
     HttpServiceProvider
 

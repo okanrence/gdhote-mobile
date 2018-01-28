@@ -5,16 +5,20 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>GDHOTE Mobile Hub</ion-title>
+  <ion-navbar color="secondary">
+    <ion-title>GDHOTE Kiosk</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <h6>
-    <i>Please confirm your details before submitting </i>
-  </h6>
+  <div padding>
+    <h6>
+      <i>Please confirm your details before submitting </i>
+    </h6>
+  </div>
+
+<div padding class="left">
 
   <ion-item>
     <ion-label>Firstname</ion-label>
@@ -54,7 +58,7 @@
   <ion-item>
     <ion-label>Gender</ion-label>
     <ion-label>
-      <h1>{{member.gender == "m" ? "Male" : "Female"}}</h1>
+      <h1>{{member.gender == "M" ? "Male" : "Female"}}</h1>
     </ion-label>
   </ion-item>
 
@@ -93,19 +97,29 @@
     </ion-label>
   </ion-item>
 
+  <div>
+      <button ion-button icon-start block outline large color="blue" (click)="Back()">
+          <ion-icon name="ios-arrow-round-back"></ion-icon>Back
+        </button>
+  </div>
+  <button ion-button block icon-end large color="dark" (click)="SaveMember(member)">
+      Submit
+      <ion-icon name="ios-paper-plane"></ion-icon>
+    </button>
+  <div>
+
+
+  </div>
   <ion-grid>
     <ion-row center>
       <ion-col>
-        <button ion-button icon-start block outline large color="blue" (click)="Back()">
-          <ion-icon name="ios-arrow-round-back"></ion-icon>Back
-        </button>
+       
       </ion-col>
       <ion-col>
-        <button ion-button block icon-end large color="blue" (click)="SaveMember(member)">
-          Save
-          <ion-icon name="ios-paper-plane"></ion-icon>
-        </button>
+       
       </ion-col>
     </ion-row>
   </ion-grid>
+
+</div>
 </ion-content>
