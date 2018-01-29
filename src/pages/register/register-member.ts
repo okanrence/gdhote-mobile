@@ -13,10 +13,10 @@ import { IonicPage, NavController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-add-member',
-  templateUrl: 'add-member.html',
+  selector: 'page-register-member',
+  templateUrl: 'register-member.html',
 })
-export class AddMemberPage {
+export class RegisterMemberPage {
 
   //TODO: Find a better way to do this date thing
   yearList: number[];

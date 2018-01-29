@@ -23,6 +23,7 @@ import { NotificationsServiceProvider } from './../providers/notifications-servi
 
 import { CommonServicesProvider } from '../providers/common-services/common-services';
 import { HttpServiceProvider } from '../providers/http-service/http-service';
+import { Network } from '@ionic-native/network';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { HttpServiceProvider } from '../providers/http-service/http-service';
     MemberServiceProvider, DatePicker, LoginServiceProvider,
     NotificationsServiceProvider,
     CommonServicesProvider,
-    HttpServiceProvider
+    HttpServiceProvider,
+    Network
 
   ]
 })

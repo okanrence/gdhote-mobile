@@ -1,8 +1,9 @@
+import { NotificationsServiceProvider } from './../providers/notifications-service/notifications-service';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-// import { Network } from '@ionic-native/network';
+import { Network } from '@ionic-native/network';
 
 
 
@@ -12,15 +13,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  // rootPage: string = 'ConfirmationPage';
   rootPage: string = 'LoginPage';
- //  rootPage: string = 'AddMemberPage';
 
   pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform,
     public statusBar: StatusBar,
-     public splashScreen: SplashScreen) {
+    public splashScreen: SplashScreen,
+    private network: Network,
+    private notificationsCtrl: NotificationsServiceProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -37,9 +38,23 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      // let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-      //   alert("Network disconnected");
-      // });      
+
+      this.network.onDisconnect().subscribe(() => {
+        this.notificationsCtrl.showToast("Network disconnected. Please ensure you are connected to the internet to use the app", 5000);
+      });
+
+      this.network.onConnect().subscribe(() => {
+        this.notificationsCtrl.showToast('Network connected!');
+        // We just got a connection but we need to wait briefly
+        // before we determine the connection type. Might need to wait.
+        // prior to doing any api requests as well.
+        // setTimeout(() => {
+        //   if (this.network.type === 'wifi') {
+        //     this.notificationsCtrl.showToast('we got a wifi connection, woohoo!');
+        //   }
+        // }, 3000);
+      });
+
     });
   }
 
