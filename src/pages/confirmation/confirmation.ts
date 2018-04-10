@@ -20,7 +20,7 @@ import { Member } from './../../models/member.interface';
 })
 export class ConfirmationPage {
 
-  member: Member;
+member = new Member();
 maritalStatusCode: string;
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
@@ -36,6 +36,9 @@ maritalStatusCode: string;
     this.navCtrl.pop();
   }
 
+  ionViewWillEnter(){
+  
+  }
   SaveMember(member: Member): void {
     console.log(member);
     let loading = this.notificationsCtrl.showLoading("...please wait...")

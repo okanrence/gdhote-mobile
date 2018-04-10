@@ -22,7 +22,7 @@ export class MemberServiceProvider {
 
   SaveMember(member: Member): Observable<any> {
     var headers = new Headers();
-    let url = endpoints.baseUrl + member._should_update ? endpoints.createMember : endpoints.getMember
+    let url = endpoints.baseUrl + member._should_update ? endpoints.updateMember : endpoints.createMember 
    
     return this.httpCtrl.post(member, headers, url);
   }

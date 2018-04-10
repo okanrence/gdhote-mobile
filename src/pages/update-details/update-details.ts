@@ -32,7 +32,7 @@ export class UpdateDetailsPage {
   magus_day: number;
   magus_month: string = "";
 
-  member:any 
+  member = new Member();
   
   constructor(private navCtrl: NavController,
      private navParams: NavParams,
@@ -41,13 +41,12 @@ export class UpdateDetailsPage {
      private commonCtrl: CommonServicesProvider) {
 
     this.member = new Member();
-    this.member.firstName = "Olanrewaju";
+  
   }
 
   ionViewDidLoad() {
-this.member = new Member();
-    this.member.firstName = "Olanrewaju";
     console.log('ionViewDidLoad UpdateDetailsPage');
+    this.populateDateList();
   }
 
   populateDateList(): void {
@@ -117,22 +116,34 @@ this.member = new Member();
     //console.log(q, this.countryList.length);
   
   }
-NextPage(){
+  NextPage() {
+    let loader: any = this.notificationCtrl.showLoading("..please wait..");
+    loader.present().then(() => {
+      this.member.MagusDate = `${this.commonCtrl.IsNullValue(this.magus_day) ? "01" : this.magus_day.toString()}-${this.magus_month == "" ? "Jan" : this.magus_month}-${this.commonCtrl.IsNullValue(this.magus_year) ? "1900" : this.magus_year.toString()}`;
+      this.member.DateOfBirth = `${this.dob_day.toString()}-${this.dob_month}-${this.dob_year.toString()}`
+      this.member._should_update = true;
+     console.log(JSON.stringify(this.member));
+      this.navCtrl.push("ConfirmationPage", { member: this.member });
 
-}
+    });
+
+    loader.dismiss();
+  }
 
 populateValues(res){
   this.member = res; 
+  let _magus_date = this.member.MagusDate.toLocaleString();
+  let _dob_date = this.member.DateOfBirth.toLocaleString();
   if (!this.commonCtrl.IsNullValue(this.member.DateOfBirth)){
-    this.dob_day = this.member.DateOfBirth.substring(0,2);
-    this.dob_month = this.member.DateOfBirth.substring(4,3);
-    this.dob_year = this.member.DateOfBirth.substring(7,4);
+    this.dob_day = +_dob_date.substring(8,10);
+    this.dob_month = _dob_date.substring(5,7);
+    this.dob_year = +_dob_date.substring(0,4);
   }
 
   if (!this.commonCtrl.IsNullValue(this.member.MagusDate)){
-    this.magus_day = this.member.MagusDate.substring(0,2);
-    this.magus_month = this.member.MagusDate.substring(4,3);
-    this.magus_year = this.member.MagusDate.substring(7,4);
+    this.magus_day = +_magus_date.substring(8,2);
+    this.magus_month = _magus_date.substring(6,2);
+    this.magus_year = +_magus_date.substring(0,4);
   }
   this.member._should_update = true;
 

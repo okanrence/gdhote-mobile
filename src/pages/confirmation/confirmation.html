@@ -103,7 +103,7 @@
         </button>
   </div>
   <button ion-button block icon-end large color="dark" (click)="SaveMember(member)">
-      Submit
+     {{member._should_update ? 'Update' : 'Submit'}} 
       <ion-icon name="ios-paper-plane"></ion-icon>
     </button>
   <div>
