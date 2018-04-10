@@ -34,7 +34,7 @@ export class CommonServicesProvider {
     }
   }
 
-  checkForNull(x): boolean {
+  IsNullValue(x:any): boolean {
     if (x == null) {
       return true;
     }

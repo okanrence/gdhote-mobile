@@ -1,4 +1,3 @@
-import { HttpMethod } from './../http-service/http-methods.enums';
 import { Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { endpoints } from '../endpoints';
@@ -19,13 +18,11 @@ export class LoginServiceProvider {
 
   LoginUser(username: string, password: string): any {
     var headers = new Headers();
+    headers.append('user_type', 'administrator');
 
-    let loginCredentials = {
-      username: username,
-      password: password
-    }
-    
-    let url = endpoints.baseUrl + endpoints.login
-    return this.httpCtrl.SendHttpRequest(loginCredentials, headers, url, HttpMethod.POST);
+    let body =  "username=" + username + "&password=" + password + "&grant_type=" + 'password';
+ 
+    let url = endpoints.baseUrl + endpoints.auth;
+    return this.httpCtrl.auth(body, headers, url);
   }
 }

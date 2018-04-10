@@ -64,8 +64,9 @@ export class RegisterMemberPage {
   NextPage() {
     let loader: any = this.notificationsCtrl.showLoading("..please wait..");
     loader.present().then(() => {
-      this.member.magusDate = `${this.commonCtrl.checkForNull(this.magus_day) ? "01" : this.magus_day.toString()}-${this.magus_month == "" ? "Jan" : this.magus_month}-${this.commonCtrl.checkForNull(this.magus_year) ? "1900" : this.magus_year.toString()}`;
-      this.member.dateOfBirth = `${this.dob_day.toString()}-${this.dob_month}-${this.dob_year.toString()}`
+      this.member.MagusDate = `${this.commonCtrl.IsNullValue(this.magus_day) ? "01" : this.magus_day.toString()}-${this.magus_month == "" ? "Jan" : this.magus_month}-${this.commonCtrl.IsNullValue(this.magus_year) ? "1900" : this.magus_year.toString()}`;
+      this.member.DateOfBirth = `${this.dob_day.toString()}-${this.dob_month}-${this.dob_year.toString()}`
+      this.member._should_update = false;
      console.log(JSON.stringify(this.member));
       this.navCtrl.push("ConfirmationPage", { member: this.member });
 

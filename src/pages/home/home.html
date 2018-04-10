@@ -28,19 +28,21 @@
     <ion-row justify-content-center>
       <ion-col col-12 col-sm>
         <button ion-button icon-start class="button-cards" (click)="NavigateToPage('RegisterMemberPage')">
-          <ion-icon name="ios-create"></ion-icon>Register</button>
+          <ion-icon name="ios-contacts"></ion-icon>Register</button>
       </ion-col>
       <ion-col col-12 col-sm>
-        <button ion-button icon-start class="button-cards" (click)="ShowComingSoon()">
-          <ion-icon name="ios-paper"></ion-icon>Payments</button>
+        <button ion-button icon-start class="button-cards" (click)="NavigateToPage('UpdateDetailsPage')"  >
+          <ion-icon name="ios-log-in-outline"></ion-icon>Update</button>
       </ion-col>
       <ion-col col-12 col-sm>
-        <button ion-button icon-start class="button-cards" disabled></button>
+        <button ion-button icon-start class="button-cards" (click)="ShowComingSoon()" >
+          <ion-icon name="ios-card"></ion-icon>Payments</button>
       </ion-col>
     </ion-row>
     <ion-row justify-content-center >
       <ion-col  col-12 col-sm>
-        <button ion-button icon-start class="button-cards" disabled></button>
+        <button ion-button icon-start class="button-cards" >
+          <ion-icon ios="ios-book" md="md-book"></ion-icon>Publications</button>
       </ion-col>
       <ion-col col-12 col-sm>
         <button ion-button icon-start class="button-cards" disabled> </button>

@@ -3,7 +3,7 @@ import { NotificationsServiceProvider } from './../../providers/notifications-se
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { LoginServiceProvider } from '../../providers/login-service/login-service'
-
+import { StorageServiceProvider } from '../../providers/storage-service/storage-service'
 
 /**
  * Generated class for the LoginPage page.
@@ -19,16 +19,33 @@ import { LoginServiceProvider } from '../../providers/login-service/login-servic
 })
 export class LoginPage {
 
-  constructor(private navCtrl: NavController,
-    private loginCtrl: LoginServiceProvider,
-    private notificationCtrl: NotificationsServiceProvider,
-   ) {
-  }
 
   username;
   password;
   isAdmin;
 
+  constructor(private navCtrl: NavController,
+    private loginCtrl: LoginServiceProvider,
+    private notificationCtrl: NotificationsServiceProvider, 
+    private storageCtrl: StorageServiceProvider
+   ) 
+   {
+       this.storageCtrl.GetValue('user-name').then((val) => {
+         this.username = val;
+        console.log('Got user name at login contructor ' + this.username);
+
+       });
+     
+  }
+
+ 
+
+
+  // LoginUser(): void {
+  //   let loading = this.notificationCtrl.showLoading("..please wait..");
+  //   loading.present().then(()=>  this.navCtrl.push('HomePage') );
+  //   loading.dismiss();
+  // }
   LoginUser(): void {
     let loading = this.notificationCtrl.showLoading("..please wait..");
 
@@ -36,13 +53,11 @@ export class LoginPage {
       this.loginCtrl.LoginUser(this.username, this.password)
         .subscribe(res => {
           console.log(res);
-          if (res.errorCode == '00') {
-            this.navCtrl.push('HomePage');
-          }
-          else {
-            this.notificationCtrl.showToast(res.errorMessage, 5000, 'top')
-              .then(() => this.password = "");
-          }
+          this.storageCtrl.SetValue('user-profile', JSON.stringify(res))
+          this.storageCtrl.SetValue('token-object', res.userName)
+          this.storageCtrl.SetValue('access-token', res.access_token)
+          this.navCtrl.push('HomePage');
+         
         },
 
         error => {

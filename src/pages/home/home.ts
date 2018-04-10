@@ -20,10 +20,9 @@ export class HomePage {
   isAdmin;
   userName;
   loginTime;
-  constructor(private navCtrl: NavController, private notificationCtrl: NotificationsServiceProvider) {
+  constructor(private navCtrl: NavController,
+     private notificationCtrl: NotificationsServiceProvider) {
   }
-
-
 
   NavigateToPage(page:string): void {
     this.navCtrl.push(page);
@@ -33,4 +32,5 @@ export class HomePage {
     this.notificationCtrl.showToast("Keep Calm, Coming Soon", 5000, "bottom");
   }
 
+  
 }

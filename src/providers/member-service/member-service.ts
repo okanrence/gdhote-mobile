@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { HttpMethod } from './../http-service/http-methods.enums';
 import { endpoints } from './../endpoints';
 import { Member } from './../../models/member.interface';
@@ -18,11 +19,18 @@ export class MemberServiceProvider {
     console.log('Hello MemberServiceProvider Provider');
   }
 
-  // private membersList = this.db.list<Member>("MembersList");
 
-  SaveMember(member: Member): any {
+  SaveMember(member: Member): Observable<any> {
     var headers = new Headers();
-    let url = endpoints.baseUrl + endpoints.createMember
-    return this.httpCtrl.SendHttpRequest(member, headers, url, HttpMethod.POST);
+    let url = endpoints.baseUrl + member._should_update ? endpoints.createMember : endpoints.getMember
+   
+    return this.httpCtrl.post(member, headers, url);
+  }
+
+
+  getMember(phone: string): Observable<any> {
+    var headers = new Headers();
+    let url = endpoints.baseUrl + endpoints.getMember + '?seachQuery=' + phone;
+    return this.httpCtrl.get(headers, url);
   }
 }

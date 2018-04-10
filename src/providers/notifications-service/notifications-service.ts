@@ -1,5 +1,4 @@
 import { ToastController, LoadingController } from 'ionic-angular';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 

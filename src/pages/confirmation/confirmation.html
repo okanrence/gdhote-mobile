@@ -23,42 +23,42 @@
   <ion-item>
     <ion-label>Firstname</ion-label>
     <ion-label>
-      <h1>{{member.firstName}}</h1>
+      <h1>{{member.FirstName}}</h1>
     </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>Middlename</ion-label>
     <ion-label>
-      <h1>{{member.middleName}}</h1>
+      <h1>{{member.MiddleName}}</h1>
     </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>Lastname</ion-label>
     <ion-label>
-      <h1>{{member.surname}}</h1>
+      <h1>{{member.Surname}}</h1>
     </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>PhoneNumber</ion-label>
     <ion-label>
-      <h1>{{member.mobileNumber}}</h1>
+      <h1>{{member.MobileNumber}}</h1>
     </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>Email</ion-label>
     <ion-label>
-      <h1>{{member.emailAddress}}</h1>
+      <h1>{{member.EmailAddress}}</h1>
     </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>Gender</ion-label>
     <ion-label>
-      <h1>{{member.gender == "M" ? "Male" : "Female"}}</h1>
+      <h1>{{member.Gender == "M" ? "Male" : "Female"}}</h1>
     </ion-label>
   </ion-item>
 
@@ -72,28 +72,28 @@
   <ion-item>
     <ion-label>Date of birth</ion-label>
     <ion-label>
-      <h1>{{member.dateOfBirth}}</h1>
+      <h1>{{member.DateOfBirth}}</h1>
     </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>Initiated</ion-label>
     <ion-label>
-      <h1>{{member.initiationFlag ? 'Yes' : 'No'}}</h1>
+      <h1>{{member.InitiationFlag ? 'Yes' : 'No'}}</h1>
     </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>Magus </ion-label>
     <ion-label>
-      <h1>{{member.magusFlag ? 'Yes' : 'No'}}</h1>
+      <h1>{{member.MagusFlag ? 'Yes' : 'No'}}</h1>
     </ion-label>
   </ion-item>
 
-  <ion-item *ngIf="member.magusFlag">
+  <ion-item *ngIf="member.MagusFlag">
     <ion-label>Magus Date</ion-label>
     <ion-label>
-      <h1>{{member.magusDate}}</h1>
+      <h1>{{member.MagusDate}}</h1>
     </ion-label>
   </ion-item>
 

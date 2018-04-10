@@ -1,5 +1,8 @@
 export enum endpoints{
-  baseUrl = "http://www.purplesclothier.com/gdhote",
+  baseUrl = "http://purplesclothier.com/Gdhotecore",
   login = "/api/v1/hub/user/authenticate-user",
-  createMember = "/api/v1/hub/member/create-member"
+  createMember = "/api/v1/member/create-member",
+  updateMember = "/api/v1/member/update-member-details",
+  getMember = "/api/v1/member/get-members-by-mobile-number",
+  auth = "/api/v1/auth/token"
 }

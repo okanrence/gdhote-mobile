@@ -28,7 +28,7 @@ maritalStatusCode: string;
     private memberCtrl: MemberServiceProvider,
   private commonCtrl: CommonServicesProvider) {
     this.member = this.navParams.get('member');
-    this.maritalStatusCode = this.commonCtrl.GetMaritalStatusCode(this.member.maritalStatus);
+    this.maritalStatusCode = this.commonCtrl.GetMaritalStatusCode(this.member.MaritalStatus);
     console.log("Log NavMember:" + JSON.stringify(this.member))
   }
 
@@ -43,12 +43,12 @@ maritalStatusCode: string;
       this.memberCtrl.SaveMember(this.member)
         .subscribe(data => {
           console.log("Response" + data);
-          if (data.errorCode == '00') {
+          if (data.ErrorCode == '00') {
             this.notificationsCtrl.showToast('Your details have been registered successfully').then(() =>
               this.navCtrl.push("HomePage"));
           }
           else {
-            this.notificationsCtrl.showAlert(data.errorMessage, "Error");
+            this.notificationsCtrl.showAlert(data.ErrorMessage, "Error");
           }
         },
 
@@ -58,7 +58,7 @@ maritalStatusCode: string;
           // console.log(JSON.stringify(error));
           // console.log("Error.body" + JSON.stringify(error.body));
           // console.log("Error._body", + JSON.stringify(error._body));
-          this.notificationsCtrl.showAlert(error, "Error");
+          this.notificationsCtrl.showAlert(error, "error");
 
         },
 

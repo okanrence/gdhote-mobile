@@ -1,18 +1,19 @@
 export class Member {
-    firstName: string;
-    surname: string;
-    middleName: string;
-    mobileNumber: string;
-    emailAddress: string;
-    gender: string;
-    dateOfBirth: string;
-    initiationFlag: boolean;
-    magusFlag: boolean;
-    magusDate: string
-    maritalStatus: string
+    FirstName: string;
+    Surname: string;
+    MiddleName: string;
+    MobileNumber: string;
+    EmailAddress: string;
+    Gender: string;
+    DateOfBirth: string;
+    InitiationFlag: boolean;
+    MagusFlag: boolean;
+    MagusDate: string;
+    MaritalStatus: string;
+    _should_update: boolean;
 
     constructor() {
-        this.magusFlag = false;
-        this.initiationFlag = false;
+        this.MagusFlag = false;
+        this.InitiationFlag = false;
     }
 }

@@ -1,3 +1,4 @@
+import { Nav } from 'ionic-angular';
 // import { Network } from '@ionic-native/network';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,8 +25,9 @@ import { NotificationsServiceProvider } from './../providers/notifications-servi
 import { CommonServicesProvider } from '../providers/common-services/common-services';
 import { HttpServiceProvider } from '../providers/http-service/http-service';
 import { Network } from '@ionic-native/network';
-
-
+import { StorageServiceProvider } from '../providers/storage-service/storage-service';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { IonicStorageModule } from '@ionic/storage';
 @NgModule({
   declarations: [
     MyApp
@@ -35,7 +37,8 @@ import { Network } from '@ionic-native/network';
     IonicModule.forRoot(MyApp),
     FormsModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule,HttpModule
+    AngularFireDatabaseModule,HttpModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,7 +52,8 @@ import { Network } from '@ionic-native/network';
     NotificationsServiceProvider,
     CommonServicesProvider,
     HttpServiceProvider,
-    Network
+    Network, NativeStorage,
+    StorageServiceProvider, 
 
   ]
 })
