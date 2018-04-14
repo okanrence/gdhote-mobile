@@ -17,6 +17,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-update-details',
   templateUrl: 'update-details.html',
 })
+
+
 export class UpdateDetailsPage {
 
   phoneNumber : string;
@@ -26,11 +28,11 @@ export class UpdateDetailsPage {
 
   dob_year: number;
   dob_day: number;
-  dob_month: string = "";
+  dob_month: number;
 
   magus_year: number;
   magus_day: number;
-  magus_month: string = "";
+  magus_month: number;
 
   member = new Member();
   
@@ -64,16 +66,15 @@ export class UpdateDetailsPage {
     }
   }
 
-
-  getMember(searchbar) {
+  getMember() {
     // Reset items back to all of the items
    // this.initializeItems();
   
-    let q:string = searchbar.srcElement.value;
-    // if the value is an empty string don't filter the items
-    if (!q || q.length < 11) {
-      return;
-    }
+    // let q:string = searchbar.srcElement.value;
+    // // if the value is an empty string don't filter the items
+    // if (!q || q.length < 11) {
+    //   return;
+    // }
   
     // if(q.length < 11){
     //   return;
@@ -81,7 +82,7 @@ export class UpdateDetailsPage {
 
     let loading = this.notificationCtrl.showLoading("..please wait..");
     loading.present().then(() => {
-      this.memberCrtl.getMember(q)
+      this.memberCrtl.getMember(this.phoneNumber)
         .subscribe(res => {
           console.log(res);
         if(res.length > 1){
@@ -104,6 +105,46 @@ export class UpdateDetailsPage {
         () => loading.dismiss());
     });
 
+
+  // getMember(searchbar) {
+  //   // Reset items back to all of the items
+  //  // this.initializeItems();
+  
+  //   let q:string = searchbar.srcElement.value;
+  //   // if the value is an empty string don't filter the items
+  //   if (!q || q.length < 11) {
+  //     return;
+  //   }
+  
+  //   // if(q.length < 11){
+  //   //   return;
+  //   // }
+
+  //   let loading = this.notificationCtrl.showLoading("..please wait..");
+  //   loading.present().then(() => {
+  //     this.memberCrtl.getMember(q)
+  //       .subscribe(res => {
+  //         console.log(res);
+  //       if(res.length > 1){
+
+  //       }else{
+  //         this.populateValues(res[0]);
+  //       }
+          
+  //         // else{
+  //         // this.notificationCtrl.showAlert(res.ErrorMessage);
+  //         // }
+  //       },
+
+  //       error => {
+  //         loading.dismiss();
+  //         console.log("Error Response " + JSON.stringify(error))
+  //         this.notificationCtrl.showAlert(error);
+  //       },
+
+  //       () => loading.dismiss());
+  //   });
+
     // this.countryList = this.countryList.filter((v) => {
     //   if(v.name && q) {
     //     if (v.name.toLowerCase().indexOf(q.toLowerCase()) > -1) {
@@ -119,7 +160,7 @@ export class UpdateDetailsPage {
   NextPage() {
     let loader: any = this.notificationCtrl.showLoading("..please wait..");
     loader.present().then(() => {
-      this.member.MagusDate = `${this.commonCtrl.IsNullValue(this.magus_day) ? "01" : this.magus_day.toString()}-${this.magus_month == "" ? "Jan" : this.magus_month}-${this.commonCtrl.IsNullValue(this.magus_year) ? "1900" : this.magus_year.toString()}`;
+      this.member.MagusDate = `${this.commonCtrl.IsNullValue(this.magus_day) ? "01" : this.magus_day.toString()}-${this.commonCtrl.IsNullValue(this.magus_month) ? "01" : this.magus_month}-${this.commonCtrl.IsNullValue(this.magus_year) ? "1900" : this.magus_year.toString()}`;
       this.member.DateOfBirth = `${this.dob_day.toString()}-${this.dob_month}-${this.dob_year.toString()}`
       this.member._should_update = true;
      console.log(JSON.stringify(this.member));
@@ -132,19 +173,20 @@ export class UpdateDetailsPage {
 
 populateValues(res){
   this.member = res; 
-  let _magus_date = this.member.MagusDate.toLocaleString();
-  let _dob_date = this.member.DateOfBirth.toLocaleString();
   if (!this.commonCtrl.IsNullValue(this.member.DateOfBirth)){
+  let _dob_date = this.member.DateOfBirth.toLocaleString();
     this.dob_day = +_dob_date.substring(8,10);
-    this.dob_month = _dob_date.substring(5,7);
+    this.dob_month = +_dob_date.substring(5,7);
     this.dob_year = +_dob_date.substring(0,4);
   }
 
-  if (!this.commonCtrl.IsNullValue(this.member.MagusDate)){
-    this.magus_day = +_magus_date.substring(8,2);
-    this.magus_month = _magus_date.substring(6,2);
-    this.magus_year = +_magus_date.substring(0,4);
-  }
+  // if (!this.commonCtrl.IsNullValue(this.member.MagusDate)){
+  //   let _magus_date = this.member.MagusDate.toLocaleString();
+  //   this.magus_day = +_magus_date.substring(8,2);
+  //   this.magus_month = +_magus_date.substring(6,2);
+  //   this.magus_year = +_magus_date.substring(0,4);
+  // }
+
   this.member._should_update = true;
 
     // this.member.firstName = res.firstName;

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>update-details</ion-title>
+    <ion-title>Update Page</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,30 +17,25 @@
     <div padding>
         <h3>Edit your details</h3>
         <h6>
-          <i>Please enter your phone number</i>
+          <i>Please enter your phone number here</i>
         </h6>
       </div>
       <form #memberForm="ngForm">
+
+
       <div style="width:40%" class="left search">
 
-          <!-- <ion-item>
-              <ion-label floating>Mobile phone</ion-label>
-              <ion-input type="text" icon-end  [(ngModel)]="surname" id="surname" name="surname" required>
-                <ion-icon name="ios-arrow-round-forward"></ion-icon></ion-input>
-              
-            </ion-item>
-            <ion-item>
-                <button ion-button block large icon-start color="dark"  >Search
-                    <ion-icon name="ios-arrow-round-forward"></ion-icon>
-                  </button>
-            </ion-item> -->
-
-            <ion-searchbar name="search"
+        <ion-item> 
+      <ion-searchbar name="search"
             [(ngModel)]="phoneNumber"
             [showCancelButton]=true
-            (ionInput)="getMember($event)"
-            ></ion-searchbar>
-
+            style="width:100%;"
+            >
+          </ion-searchbar> 
+          <button ion-button block large  icon-end color="dark" (click)="getMember()">Search
+            <ion-icon name="md-search"></ion-icon>
+          </button>
+          </ion-item>
       </div>
 
 
@@ -61,12 +56,12 @@
 
       <ion-item>
         <ion-label floating>Phone Number</ion-label>
-        <ion-input type="number" id="mobileNumber" name="mobileNumber" [(ngModel)]="member.MobileNumber"></ion-input>
+        <ion-input type="number" id="mobileNumber" name="mobileNumber" [(ngModel)]="member.MobileNumber" disabled></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Email</ion-label>
-        <ion-input type="text" id="email" name="email" [(ngModel)]="member.EmailAddress" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
+        <ion-input type="text" id="email" name="email" [(ngModel)]="member.EmailAddress" disabled pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
       </ion-item>
       <ion-row padding>
         <ion-col col-3>
@@ -84,18 +79,18 @@
           <ion-item>
             <ion-label floating>Month</ion-label>
             <ion-select [(ngModel)]="dob_month" id="dob_month" name="dob_month" required>
-              <ion-option value="Jan">January</ion-option>
-              <ion-option value="Feb">Febrary</ion-option>
-              <ion-option value="Mar">March</ion-option>
-              <ion-option value="Apr">April</ion-option>
-              <ion-option value="May">May</ion-option>
-              <ion-option value="Jun">June</ion-option>
-              <ion-option value="Jul">July</ion-option>
-              <ion-option value="Aug">August</ion-option>
-              <ion-option value="Sep">September</ion-option>
-              <ion-option value="Oct">October</ion-option>
-              <ion-option value="Nov">November</ion-option>
-              <ion-option value="Dec">December</ion-option>
+              <ion-option value="01">January</ion-option>
+              <ion-option value="02">Febrary</ion-option>
+              <ion-option value="03">March</ion-option>
+              <ion-option value="04">April</ion-option>
+              <ion-option value="05">May</ion-option>
+              <ion-option value="06">June</ion-option>
+              <ion-option value="07">July</ion-option>
+              <ion-option value="08">August</ion-option>
+              <ion-option value="09">September</ion-option>
+              <ion-option value="10">October</ion-option>
+              <ion-option value="11">November</ion-option>
+              <ion-option value="12">December</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>

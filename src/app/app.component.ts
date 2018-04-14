@@ -13,7 +13,7 @@ import { Network } from '@ionic-native/network';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: string = 'LoginPage';
+  rootPage: string = 'PublicationsPage';
 
   pages: Array<{ title: string, component: any }>;
 

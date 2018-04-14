@@ -28,6 +28,7 @@ import { Network } from '@ionic-native/network';
 import { StorageServiceProvider } from '../providers/storage-service/storage-service';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { IonicStorageModule } from '@ionic/storage';
+import { PublicationServicesProvider } from '../providers/publication-services/publication-services';
 @NgModule({
   declarations: [
     MyApp
@@ -53,7 +54,8 @@ import { IonicStorageModule } from '@ionic/storage';
     CommonServicesProvider,
     HttpServiceProvider,
     Network, NativeStorage,
-    StorageServiceProvider, 
+    StorageServiceProvider,
+    PublicationServicesProvider, 
 
   ]
 })
