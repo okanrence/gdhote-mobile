@@ -56,7 +56,6 @@ export class UpdateDetailsPage {
 
 
   getMember() {
- 
     let loading = this.notificationCtrl.showLoading("..please wait..");
     loading.present().then(() => {
       this.memberCrtl.getMember(this.phoneNumber)

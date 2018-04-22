@@ -30,6 +30,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { IonicStorageModule } from '@ionic/storage';
 import { PublicationServicesProvider } from '../providers/publication-services/publication-services';
 import { Dictionary } from '../providers/dictionary-services/dictionary-services';
+import { PaymentServicesProvider } from '../providers/payment-services/payment-services';
 @NgModule({
   declarations: [
     MyApp
@@ -57,7 +58,8 @@ import { Dictionary } from '../providers/dictionary-services/dictionary-services
     Network, NativeStorage,
     StorageServiceProvider,
     PublicationServicesProvider,
-    Dictionary, 
+    Dictionary,
+    PaymentServicesProvider, 
 
   ]
 })

@@ -5,5 +5,12 @@ export enum endpoints{
   updateMember = "/api/v1/member/update-member-details",
   getMember = "/api/v1/member/get-members-by-mobile-number",
   getPublicationCategories = "/api/v1/publication/get-active-publication-categories",
+  getPaymentTypes = "/api/v1/payment/get-active-payment-types",
+  getPaymentModes = "/api/v1/payment/get-active-payment-modes",
+  getCurrencies = "/api/v1/currency/get-active-currencies",
+
+  
+
+  
   auth = "/api/v1/auth/token"
 }

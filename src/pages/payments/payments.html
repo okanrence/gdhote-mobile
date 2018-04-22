@@ -20,7 +20,7 @@
   </ion-refresher>
 
   <div padding>
-    <h3>Register</h3>
+    <h3>Make Payment</h3>
     <h6>
       <i>Please note that all fields marked with asterisks (*) are mandatory</i>
     </h6>
@@ -28,39 +28,38 @@
 
   <div padding class="left">
 
-    <!-- <form #memberForm="ngForm">
+    <form #memberForm="ngForm">
+      
       <ion-item>
-        <ion-label floating>Name*</ion-label>
-        <ion-input type="text" id="firstname" name="firstname" required></ion-input>
-      </ion-item>
+          <ion-label floating>PhoneNumber*</ion-label>
+          <ion-input type="text" id="firstname" name="firstname" required></ion-input>
+        </ion-item>
 
+        <ion-item>
+            <ion-label floating>Name*</ion-label>
+            <ion-input type="text" id="firstname" name="firstname" required></ion-input>
+        </ion-item>
+
+      
       <ion-item>
-        <ion-label floating>Payment Type*</ion-label>
-        <ion-select  id="maritalSteatus" name="maritalStatus" required>
-          <ion-option value="S">Single</ion-option>
-          <ion-option value="M">Married</ion-option>
-          <ion-option value="D">Divorced</ion-option>
-          <ion-option value="W">Widowed</ion-option>
+      <ion-spinner name="bubbles" *ngIf="showPaymentTypesSpin"></ion-spinner>  
+      <ion-label floating> Payment Type*</ion-label>
+        <ion-select  id="paymentType" name="paymentType" required>
+            <ion-option *ngFor="let paymentType of paymentTypes" [value]="paymentType.Id">{{paymentType.Name}}</ion-option>
         </ion-select>
+          
       </ion-item>
-
       <ion-item>
         <ion-label floating>Mode of Payment*</ion-label>
-        <ion-select  id="maritalStatus" name="maritalStatus" required>
-          <ion-option value="S">Single</ion-option>
-          <ion-option value="M">Married</ion-option>
-          <ion-option value="D">Divorced</ion-option>
-          <ion-option value="W">Widowed</ion-option>
+        <ion-select  id="paymentMode" name="paymentMode" required>
+            <ion-option *ngFor="let paymentMode of paymentModes" [value]="paymentMode.Id">{{paymentMode.Name}}</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Currency*</ion-label>
-        <ion-select  id="maritalSdtatus" name="maritalStatus" required>
-          <ion-option value="S">Single</ion-option>
-          <ion-option value="M">Married</ion-option>
-          <ion-option value="D">Divorced</ion-option>
-          <ion-option value="W">Widowed</ion-option>
+        <ion-select  id="currency" name="currency" required>
+            <ion-option *ngFor="let currency of currencies" [value]="currency.Id">{{currency.CurrencyCode}}</ion-option>
         </ion-select>
       </ion-item>
 
@@ -78,6 +77,6 @@
       <button ion-button block large icon-start color="dark" [disabled]="!memberForm.form.valid">Next
         <ion-icon name="ios-arrow-round-forward"></ion-icon>
       </button>
-    </form>-->
+    </form>
   </div> 
 </ion-content>
