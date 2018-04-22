@@ -1,9 +1,10 @@
+import { DateObj } from './../../models/date.interface';
 import { CommonServicesProvider } from './../../providers/common-services/common-services';
 import { MemberServiceProvider } from './../../providers/member-service/member-service';
 import { NotificationsServiceProvider } from './../../providers/notifications-service/notifications-service';
 import { Member } from './../../models/member.interface';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
 /**
  * Generated class for the UpdateDetailsPage page.
@@ -21,65 +22,41 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 export class UpdateDetailsPage {
 
+  dateOfBirth: DateObj;
+  magusDate: DateObj;
   phoneNumber : string;
 
-  yearList: number[];
-  daysList: number[];
+  years: number[];
+  days: number[];
+  months: [{}];
 
-  dob_year: number;
-  dob_day: number;
-  dob_month: number;
-
-  magus_year: number;
-  magus_day: number;
-  magus_month: number;
-
-  member = new Member();
+  maritalStatusList: [{}];
+  
+  member: Member;
   
   constructor(private navCtrl: NavController,
-     private navParams: NavParams,
     private notificationCtrl :NotificationsServiceProvider,
      private memberCrtl : MemberServiceProvider,
      private commonCtrl: CommonServicesProvider) {
 
     this.member = new Member();
-  
+    this.dateOfBirth = new DateObj();
+    this.magusDate = new DateObj();
+
+    this.days = this.commonCtrl.GetDays();
+    this.years = this.commonCtrl.GetYears();
+    this.months = this.commonCtrl.GetMonths();
+    this.maritalStatusList = this.commonCtrl.GetMaritalStatusList();
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UpdateDetailsPage');
-    this.populateDateList();
+
   }
 
-  populateDateList(): void {
-    this.yearList = [];
-    this.daysList = [];
-
-    let i = new Date().getFullYear() + 1;
-
-    while (i-- && i >= 1904) {
-      this.yearList.push(i);
-    }
-
-    for (let j = 1; j <= 31; j++) {
-      this.daysList.push(j);
-    }
-  }
 
   getMember() {
-    // Reset items back to all of the items
-   // this.initializeItems();
-  
-    // let q:string = searchbar.srcElement.value;
-    // // if the value is an empty string don't filter the items
-    // if (!q || q.length < 11) {
-    //   return;
-    // }
-  
-    // if(q.length < 11){
-    //   return;
-    // }
-
+ 
     let loading = this.notificationCtrl.showLoading("..please wait..");
     loading.present().then(() => {
       this.memberCrtl.getMember(this.phoneNumber)
@@ -160,8 +137,8 @@ export class UpdateDetailsPage {
   NextPage() {
     let loader: any = this.notificationCtrl.showLoading("..please wait..");
     loader.present().then(() => {
-      this.member.MagusDate = `${this.commonCtrl.IsNullValue(this.magus_day) ? "01" : this.magus_day.toString()}-${this.commonCtrl.IsNullValue(this.magus_month) ? "01" : this.magus_month}-${this.commonCtrl.IsNullValue(this.magus_year) ? "1900" : this.magus_year.toString()}`;
-      this.member.DateOfBirth = `${this.dob_day.toString()}-${this.dob_month}-${this.dob_year.toString()}`
+      this.member.MagusDate = this.commonCtrl.GetDateString(this.magusDate);
+      this.member.DateOfBirth =  this.commonCtrl.GetDateString(this.dateOfBirth);
       this.member._should_update = true;
      console.log(JSON.stringify(this.member));
       this.navCtrl.push("ConfirmationPage", { member: this.member });
@@ -173,32 +150,8 @@ export class UpdateDetailsPage {
 
 populateValues(res){
   this.member = res; 
-  if (!this.commonCtrl.IsNullValue(this.member.DateOfBirth)){
-  let _dob_date = this.member.DateOfBirth.toLocaleString();
-    this.dob_day = +_dob_date.substring(8,10);
-    this.dob_month = +_dob_date.substring(5,7);
-    this.dob_year = +_dob_date.substring(0,4);
-  }
-
-  // if (!this.commonCtrl.IsNullValue(this.member.MagusDate)){
-  //   let _magus_date = this.member.MagusDate.toLocaleString();
-  //   this.magus_day = +_magus_date.substring(8,2);
-  //   this.magus_month = +_magus_date.substring(6,2);
-  //   this.magus_year = +_magus_date.substring(0,4);
-  // }
-
+  this.dateOfBirth = this.commonCtrl.GetDate(this.member.DateOfBirth);
+   this.magusDate = this.commonCtrl.GetDate(this.member.MagusDate);
   this.member._should_update = true;
-
-    // this.member.firstName = res.firstName;
-    // this.member.surname = res.surname;
-    // this.member.middleName = res.middleName;
-    // this.member.mobileNumber = res.mobileNumber;
-    // this.member.emailAddress = res.emailAddress;
-    // this.member.dateOfBirth = res.dateOfBirth;
-    // this.member.initiationFlag = res.initiationFlag;
-    // this.member.magusFlag = res.magusFlag;
-    // this.member.magusDate = res.magusDate;
-    // this.member.maritalStatus = res.maritalStatus;
-
-}
+  }
 }

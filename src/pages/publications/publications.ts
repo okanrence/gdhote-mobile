@@ -24,10 +24,18 @@ categories: any;
   ionViewDidLoad() {
 
     console.log('ionViewDidLoad PublicationsPage');
+    
     this.GetCategories();
-  }
+   
 
+   // loading.dismiss();
+  }
+ 
   GetCategories(){
+
+    let loading = this.notificationsCtrl.showLoading("..please wait..");
+
+    loading.present().then(() => {
     this.categoriesCtrl.getCategories()
         .subscribe(res => {
           console.log(res);
@@ -39,9 +47,14 @@ categories: any;
         },
 
         error => {
-        //  loading.dismiss();
+          loading.dismiss();
           console.log("Error Response " + JSON.stringify(error))
           this.notificationsCtrl.showAlert(error);
-        })
-   }
+        },
+
+        () => loading.dismiss()
+      
+      )
+   });
+  }
 }

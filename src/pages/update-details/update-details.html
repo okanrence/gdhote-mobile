@@ -70,35 +70,24 @@
         <ion-col col-3>
           <ion-item>
             <ion-label floating>Day</ion-label>
-            <ion-select [(ngModel)]="dob_day" id="dob_day" name="dob_day" required>
-              <ion-option *ngFor="let item of daysList" [value]="item">{{item}}</ion-option>
+            <ion-select [(ngModel)]="dateOfBirth.day" id="dob_day" name="dob_day" required>
+              <ion-option *ngFor="let day of days" [value]="day">{{day}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col col-3>
           <ion-item>
             <ion-label floating>Month</ion-label>
-            <ion-select [(ngModel)]="dob_month" id="dob_month" name="dob_month" required>
-              <ion-option value="01">January</ion-option>
-              <ion-option value="02">Febrary</ion-option>
-              <ion-option value="03">March</ion-option>
-              <ion-option value="04">April</ion-option>
-              <ion-option value="05">May</ion-option>
-              <ion-option value="06">June</ion-option>
-              <ion-option value="07">July</ion-option>
-              <ion-option value="08">August</ion-option>
-              <ion-option value="09">September</ion-option>
-              <ion-option value="10">October</ion-option>
-              <ion-option value="11">November</ion-option>
-              <ion-option value="12">December</ion-option>
+            <ion-select [(ngModel)]="dateOfBirth.month" id="dob_month" name="dob_month" required>
+                <ion-option *ngFor="let month of months" [value]="month.value">{{month.text}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col col-3>
           <ion-item>
             <ion-label floating>Year</ion-label>
-            <ion-select [(ngModel)]="dob_year" id="dob_year" name="dob_year" required>
-              <ion-option *ngFor="let item of yearList" [value]="item">{{item}}</ion-option>
+            <ion-select [(ngModel)]="dateOfBirth.year" id="dob_year" name="dob_year" required>
+              <ion-option *ngFor="let year of years" [value]="year">{{year}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -117,10 +106,7 @@
       <ion-item>
         <ion-label floating>Marital Status*</ion-label>
         <ion-select [(ngModel)]="member.MaritalStatus" id="maritalStatus" name="maritalStatus" required>
-          <ion-option value="S">Single</ion-option>
-          <ion-option value="M">Married</ion-option>
-          <ion-option value="D">Divorced</ion-option>
-          <ion-option value="W">Widowed</ion-option>
+            <ion-option *ngFor="let item of maritalStatusList" [value]="item.value">{{item.text}}</ion-option>
         </ion-select>
       </ion-item>
 
@@ -142,35 +128,24 @@
         <ion-col col-3>
           <ion-item>
             <ion-label floating>Day</ion-label>
-            <ion-select [(ngModel)]="magus_day" id="magus_day" name="magus_day">
-              <ion-option *ngFor="let item of daysList" [value]="item">{{item}}</ion-option>
+            <ion-select [(ngModel)]="magusDate.day" id="magus_day" name="magus_day">
+              <ion-option *ngFor="let day of days" [value]="day">{{day}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col col-3>
           <ion-item>
             <ion-label floating>Month</ion-label>
-            <ion-select [(ngModel)]="magus_month"  id="magus_month" name="magus_month">
-              <ion-option value="01">January</ion-option>
-              <ion-option value="02">Febrary</ion-option>
-              <ion-option value="03">March</ion-option>
-              <ion-option value="04">April</ion-option>
-              <ion-option value="05">May</ion-option>
-              <ion-option value="06">June</ion-option>
-              <ion-option value="07">July</ion-option>
-              <ion-option value="08">August</ion-option>
-              <ion-option value="09">September</ion-option>
-              <ion-option value="10">October</ion-option>
-              <ion-option value="11">November</ion-option>
-              <ion-option value="12">December</ion-option>
+            <ion-select [(ngModel)]="magusDate.month"  id="magus_month" name="magus_month">
+                <ion-option *ngFor="let month of months" [value]="month.value">{{month.text}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col col-3>
           <ion-item>
             <ion-label floating>Year*</ion-label>
-            <ion-select [(ngModel)]="magus_year" id="magus_year" name="magus_year" required>
-              <ion-option *ngFor="let item of yearList" [value]="item">{{item}}</ion-option>
+            <ion-select [(ngModel)]="magusDate.year" id="magus_year" name="magus_year" required>
+              <ion-option *ngFor="let year of years" [value]="year">{{year}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>

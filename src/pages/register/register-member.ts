@@ -1,3 +1,4 @@
+import { DateObj } from './../../models/date.interface';
 import { CommonServicesProvider } from './../../providers/common-services/common-services';
 import { NotificationsServiceProvider } from './../../providers/notifications-service/notifications-service';
 import { Member } from './../../models/member.interface';
@@ -19,39 +20,32 @@ import { IonicPage, NavController } from 'ionic-angular';
 export class RegisterMemberPage {
 
   //TODO: Find a better way to do this date thing
-  yearList: number[];
-  daysList: number[];
+  years: number[];
+  days: number[];
+  months: [{}];
+  dateOfBirth: DateObj;
+  magusDate: DateObj;;
+  member: Member;
 
-  dob_year: number;
-  dob_day: number;
-  dob_month: string = "";
-
-  magus_year: number;
-  magus_day: number;
-  magus_month: string = "";
-
-  member = new Member();
+  maritalStatusList: any;
   constructor(private navCtrl: NavController,
     private notificationsCtrl: NotificationsServiceProvider,
     private commonCtrl: CommonServicesProvider
-  )
-  {
-    this.populateDateList();
+  ) {
+
+    
+    this.days = this.commonCtrl.GetDays();
+    this.years = this.commonCtrl.GetYears();
+    this.months = this.commonCtrl.GetMonths();
+    this.maritalStatusList = this.commonCtrl.GetMaritalStatusList();
+    this.dateOfBirth = new DateObj();
+    this.magusDate = new DateObj();
+    this.member = new Member();   
   }
 
-  populateDateList(): void {
-    this.yearList = [];
-    this.daysList = [];
+  ionViewDidLoad() {
+   
 
-    let i = new Date().getFullYear() + 1;
-
-    while (i-- && i >= 1904) {
-      this.yearList.push(i);
-    }
-
-    for (let j = 1; j <= 31; j++) {
-      this.daysList.push(j);
-    }
   }
 
   doRefresh(refresher) {
@@ -64,17 +58,16 @@ export class RegisterMemberPage {
   NextPage() {
     let loader: any = this.notificationsCtrl.showLoading("..please wait..");
     loader.present().then(() => {
-      this.member.MagusDate = `${this.commonCtrl.IsNullValue(this.magus_day) ? "01" : this.magus_day.toString()}-${this.magus_month == "" ? "Jan" : this.magus_month}-${this.commonCtrl.IsNullValue(this.magus_year) ? "1900" : this.magus_year.toString()}`;
-      this.member.DateOfBirth = `${this.dob_day.toString()}-${this.dob_month}-${this.dob_year.toString()}`
+      this.member.MagusDate = this.commonCtrl.GetDateString(this.magusDate)
+      this.member.DateOfBirth = this.commonCtrl.GetDateString(this.dateOfBirth);
       this.member._should_update = false;
-     console.log(JSON.stringify(this.member));
+      console.log(JSON.stringify(this.member));
       this.navCtrl.push("ConfirmationPage", { member: this.member });
 
     });
 
     loader.dismiss();
   }
-
 
 }
 

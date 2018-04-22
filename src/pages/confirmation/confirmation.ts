@@ -27,18 +27,27 @@ maritalStatusCode: string;
     private notificationsCtrl: NotificationsServiceProvider,
     private memberCtrl: MemberServiceProvider,
   private commonCtrl: CommonServicesProvider) {
-    this.member = this.navParams.get('member');
-    this.maritalStatusCode = this.commonCtrl.GetMaritalStatusCode(this.member.MaritalStatus);
-    console.log("Log NavMember:" + JSON.stringify(this.member))
+   
   }
 
   Back(): void {
     this.navCtrl.pop();
   }
 
-  ionViewWillEnter(){
   
+  ionViewWillEnter(){
+    
+    this.member = <Member>this.navParams.get('member');
+    console.log("Log NavMember:" + JSON.stringify(this.member))
+    
+    if(this.member){
+      this.maritalStatusCode = this.commonCtrl.GetMaritalStatusCode(this.member.MaritalStatus);
+    }else{
+      this.navCtrl.push("RegisterMemberPage");
+    }
+    
   }
+
   SaveMember(member: Member): void {
     console.log(member);
     let loading = this.notificationsCtrl.showLoading("...please wait...")

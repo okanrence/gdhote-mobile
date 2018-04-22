@@ -1,5 +1,5 @@
 <!--
-  Generated template for the PublicationsPage page.
+  Generated template for the PublicationsCategoriesPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -25,7 +25,8 @@
                 </ion-card-header>
                 <ion-card-content>
                     <div>
-                        <img src="./assets/imgs/reports.jpg" style="height:300px; width:250px; margin:auto; margin-top:15px" />                         
+                        <!-- <img src="./assets/imgs/reports.jpg" style="height:300px; width:250px; margin:auto; margin-top:15px" (click)="presentPrompt()" />                          -->
+                        <img [src]="category.DisplayImageUrl" style="height:300px; width:250px; margin:auto; margin-top:15px" (click)="presentPrompt()" />                         
                     </div>
 
                 </ion-card-content>

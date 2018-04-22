@@ -1,4 +1,4 @@
-page-publications {
+page-publications-categories {
     ion-card {
         position: relative;
         text-align: center;
@@ -7,7 +7,7 @@ page-publications {
       .card-title {
         position: top;
         // top: 1%;
-        font-size: 2.0em;
+        font-size: 18px;
         width: 100%;
         font-weight: bold;
         color: rgb(12, 12, 12);
@@ -15,7 +15,7 @@ page-publications {
     
       .card-subtitle {
        
-        font-size: 0.6em;
+        font-size: 12px;
         width: 100%;
         color: rgb(10, 10, 10);
       }
