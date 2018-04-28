@@ -18,108 +18,108 @@
     </h6>
   </div>
 
-<div padding class="left">
+  <div padding class="left">
 
-  <ion-item>
-    <ion-label>Firstname</ion-label>
-    <ion-label>
-      <h1>{{member.FirstName}}</h1>
-    </ion-label>
-  </ion-item>
+    <ion-item>
+      <ion-label>Firstname</ion-label>
+      <ion-label>
+        <h1>{{member.FirstName}}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Middlename</ion-label>
-    <ion-label>
-      <h1>{{member.MiddleName}}</h1>
-    </ion-label>
-  </ion-item>
+    <ion-item>
+      <ion-label>Middlename</ion-label>
+      <ion-label>
+        <h1>{{member.MiddleName}}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Lastname</ion-label>
-    <ion-label>
-      <h1>{{member.Surname}}</h1>
-    </ion-label>
-  </ion-item>
+    <ion-item>
+      <ion-label>Lastname</ion-label>
+      <ion-label>
+        <h1>{{member.Surname}}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>PhoneNumber</ion-label>
-    <ion-label>
-      <h1>{{member.MobileNumber}}</h1>
-    </ion-label>
-  </ion-item>
+    <ion-item>
+      <ion-label>PhoneNumber</ion-label>
+      <ion-label>
+        <h1>{{member.MobileNumber}}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Email</ion-label>
-    <ion-label>
-      <h1>{{member.EmailAddress}}</h1>
-    </ion-label>
-  </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-label>
+        <h1>{{member.EmailAddress}}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Gender</ion-label>
-    <ion-label>
-      <h1>{{member.Gender == "M" ? "Male" : "Female"}}</h1>
-    </ion-label>
-  </ion-item>
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-label>
+        <h1>{{member.Gender == "M" ? "Male" : "Female"}}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Marital Status</ion-label>
-    <ion-label>
-      <h1>{{maritalStatusCode}}</h1>
-    </ion-label>
-  </ion-item>
+    <ion-item>
+      <ion-label>Marital Status</ion-label>
+      <ion-label>
+        <h1>{{maritalStatusCode}}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Date of birth</ion-label>
-    <ion-label>
-      <h1>{{member.DateOfBirth}}</h1>
-    </ion-label>
-  </ion-item>
+    <ion-item>
+      <ion-label>Date of birth</ion-label>
+      <ion-label>
+        <h1>{{member.DateOfBirth}}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Initiated</ion-label>
-    <ion-label>
-      <h1>{{member.InitiationFlag ? 'Yes' : 'No'}}</h1>
-    </ion-label>
-  </ion-item>
+    <ion-item>
+      <ion-label>Initiated</ion-label>
+      <ion-label>
+        <h1>{{member.InitiationFlag ? 'Yes' : 'No'}}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Magus </ion-label>
-    <ion-label>
-      <h1>{{member.MagusFlag ? 'Yes' : 'No'}}</h1>
-    </ion-label>
-  </ion-item>
+    <ion-item>
+      <ion-label>Magus </ion-label>
+      <ion-label>
+        <h1>{{member.MagusFlag ? 'Yes' : 'No'}}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item *ngIf="member.MagusFlag">
-    <ion-label>Magus Date</ion-label>
-    <ion-label>
-      <h1>{{member.MagusDate}}</h1>
-    </ion-label>
-  </ion-item>
+    <ion-item *ngIf="member.MagusFlag">
+      <ion-label>Magus Date</ion-label>
+      <ion-label>
+        <h1>{{member.MagusDate}}</h1>
+      </ion-label>
+    </ion-item>
 
-  <div>
+    <div>
       <button ion-button icon-start block outline large color="blue" (click)="Back()">
-          <ion-icon name="ios-arrow-round-back"></ion-icon>Back
-        </button>
-  </div>
-  <button ion-button block icon-end large color="dark" (click)="SaveMember(member)">
-     {{member._should_update ? 'Update' : 'Submit'}} 
+        <ion-icon name="ios-arrow-round-back"></ion-icon>Back
+      </button>
+    </div>
+    <button ion-button block icon-end large color="dark" (click)="SaveMember(member)">
+      {{member._should_update ? 'Update' : 'Submit'}}
       <ion-icon name="ios-paper-plane"></ion-icon>
     </button>
-  <div>
+    <div>
 
+
+    </div>
+    <ion-grid>
+      <ion-row center>
+        <ion-col>
+
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
   </div>
-  <ion-grid>
-    <ion-row center>
-      <ion-col>
-       
-      </ion-col>
-      <ion-col>
-       
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-</div>
 </ion-content>

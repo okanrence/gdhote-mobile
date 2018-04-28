@@ -20,12 +20,12 @@ import { IonicPage, NavController } from 'ionic-angular';
 export class RegisterMemberPage {
 
   //TODO: Find a better way to do this date thing
-  years: number[];
-  days: number[];
-  months: [{}];
-  dateOfBirth: DateObj;
-  magusDate: DateObj;;
-  member: Member;
+  public years: number[];
+  public days: number[];
+  public months: [{}];
+  public dateOfBirth: DateObj;
+  public magusDate: DateObj;;
+  public member: Member;
 
   maritalStatusList: any;
   constructor(private navCtrl: NavController,
@@ -33,18 +33,18 @@ export class RegisterMemberPage {
     private commonCtrl: CommonServicesProvider
   ) {
 
-    
+
     this.days = this.commonCtrl.GetDays();
     this.years = this.commonCtrl.GetYears();
     this.months = this.commonCtrl.GetMonths();
     this.maritalStatusList = this.commonCtrl.GetMaritalStatusList();
     this.dateOfBirth = new DateObj();
     this.magusDate = new DateObj();
-    this.member = new Member();   
+    this.member = new Member();
   }
 
   ionViewDidLoad() {
-   
+
 
   }
 

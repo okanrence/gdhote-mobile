@@ -60,7 +60,7 @@
           <ion-item>
             <ion-label floating>Month</ion-label>
             <ion-select [(ngModel)]="dateOfBirth.month" id="dob_month" name="dob_month" required>
-                <ion-option *ngFor="let month of months" [value]="month.value">{{month.text}}</ion-option>
+              <ion-option *ngFor="let month of months" [value]="month.value">{{month.text}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -89,7 +89,7 @@
         <ion-select [(ngModel)]="member.MaritalStatus" id="maritalStatus" name="maritalStatus" required>
           <ion-option *ngFor="let item of maritalStatusList" [value]="item.value">{{item.text}}</ion-option>
         </ion-select>
-        
+
         <!-- <ion-select [(ngModel)]="member.MaritalStatus" id="maritalStatus" name="maritalStatus" required>
           <ion-option value="S">Single</ion-option>
           <ion-option value="M">Married</ion-option>
@@ -125,7 +125,7 @@
           <ion-item>
             <ion-label floating>Month</ion-label>
             <ion-select [(ngModel)]="magusDate.month" id="magus_month" name="magus_month">
-                <ion-option *ngFor="let month of months" [value]="month.value">{{month.text}}</ion-option>
+              <ion-option *ngFor="let month of months" [value]="month.value">{{month.text}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>

@@ -1,24 +1,18 @@
-page-login{
-
+page-login {
     .page-title {
-    color: #54828a;
-    font-size: 32px;
-    text-align: center;
-    
+        color: #54828a;
+        font-size: 32px;
+        text-align: center;
+    }
+    .center {
+        width: 80%;
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+        display: block;
+    }
+    .login-img {
+        width: 250px;
+        height: 250px;
+    }
 }
-
-.center {
-   width: 80%;
-   text-align: center;
-   margin-right: auto;
-   margin-left: auto;
-    display: block;
-}
-.login-img{
-width: 250px;
-height: 250px;
-
-}
-
-}
-

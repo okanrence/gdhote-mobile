@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Injectable } from "@angular/core";
+import { Storage } from "@ionic/storage";
 /*
   Generated class for the StorageServiceProvider provider.
 
@@ -8,26 +8,22 @@ import { Storage } from '@ionic/storage';
 */
 @Injectable()
 export class StorageServiceProvider {
-
   constructor(private storage: Storage) {
-    console.log('Hello StorageServiceProvider Provider');
+    console.log("Hello StorageServiceProvider Provider");
   }
 
-   SetValue(key:any, value:any){
-    this.storage.set(key, value)
-    .then(
-      () => console.log('Stored item! ' + key),
-      error => console.error('Error storing item', error)
-    );
+  SetValue(key: any, value: any) {
+    this.storage
+      .set(key, value)
+      .then(
+        () => console.log("Stored item! " + key),
+        error => console.error("Error storing item", error)
+      );
 
- // return  this.storage.set(key, value)
-   
+    // return  this.storage.set(key, value)
   }
-
 
   GetValue(key: string): Promise<any> {
     return this.storage.get(key);
   }
-
- 
 }

@@ -14,145 +14,141 @@
 
 
 <ion-content padding>
-    <div padding>
-        <h3>Edit your details</h3>
-        <h6>
-          <i>Please enter your phone number here</i>
-        </h6>
-      </div>
-      <form #memberForm="ngForm">
+  <div padding>
+    <h3>Edit your details</h3>
+    <h6>
+      <i>Please enter your phone number here</i>
+    </h6>
+  </div>
+  <form #memberForm="ngForm">
 
 
-      <div style="width:40%" class="left search">
-
-        <ion-item> 
-      <ion-searchbar name="search"
-            [(ngModel)]="phoneNumber"
-            [showCancelButton]=true
-            style="width:100%;"
-            >
-          </ion-searchbar> 
-          <button ion-button block large  icon-end color="dark" (click)="getMember()">Search
-            <ion-icon name="md-search"></ion-icon>
-          </button>
-          </ion-item>
-      </div>
-
-
+    <div style="width:40%" class="left search">
 
       <ion-item>
-        <ion-label floating>Firstname*</ion-label>
-        <ion-input type="text" [(ngModel)]="member.FirstName" id="firstname" name="firstname" required></ion-input>
+        <ion-searchbar name="search" [(ngModel)]="phoneNumber" [showCancelButton]=true style="width:100%;">
+        </ion-searchbar>
+        <button ion-button block large icon-end color="dark" (click)="getMember()">Search
+          <ion-icon name="md-search"></ion-icon>
+        </button>
       </ion-item>
-      <ion-item>
-        <ion-label floating>Middlename</ion-label>
-        <ion-input type="text" id="middlename" name="middlename" [(ngModel)]="member.MiddleName"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>Surname*</ion-label>
-        <ion-input type="text" id="lastname" name="lastname" [(ngModel)]="member.Surname" required></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>Phone Number</ion-label>
-        <ion-input type="number" id="mobileNumber" name="mobileNumber" [(ngModel)]="member.MobileNumber" disabled></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input type="text" id="email" name="email" [(ngModel)]="member.EmailAddress" disabled pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
-      </ion-item>
-      <ion-row padding>
-        <ion-col col-3>
-          <ion-label floating class="grey-label">D.O.B*</ion-label>
-        </ion-col>
-        <ion-col col-3>
-          <ion-item>
-            <ion-label floating>Day</ion-label>
-            <ion-select [(ngModel)]="dateOfBirth.day" id="dob_day" name="dob_day" required>
-              <ion-option *ngFor="let day of days" [value]="day">{{day}}</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-3>
-          <ion-item>
-            <ion-label floating>Month</ion-label>
-            <ion-select [(ngModel)]="dateOfBirth.month" id="dob_month" name="dob_month" required>
-                <ion-option *ngFor="let month of months" [value]="month.value">{{month.text}}</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-3>
-          <ion-item>
-            <ion-label floating>Year</ion-label>
-            <ion-select [(ngModel)]="dateOfBirth.year" id="dob_year" name="dob_year" required>
-              <ion-option *ngFor="let year of years" [value]="year">{{year}}</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-
-      </ion-row>
-
-      <ion-item>
-        <ion-label floating>Gender*</ion-label>
-        <ion-select [(ngModel)]="member.Gender" id="gender" name="gender" required>
-          <ion-option value="F">Female</ion-option>
-          <ion-option value="M">Male</ion-option>
-        </ion-select>
-      </ion-item>
+    </div>
 
 
-      <ion-item>
-        <ion-label floating>Marital Status*</ion-label>
-        <ion-select [(ngModel)]="member.MaritalStatus" id="maritalStatus" name="maritalStatus" required>
-            <ion-option *ngFor="let item of maritalStatusList" [value]="item.value">{{item.text}}</ion-option>
-        </ion-select>
-      </ion-item>
+
+    <ion-item>
+      <ion-label floating>Firstname*</ion-label>
+      <ion-input type="text" [(ngModel)]="member.FirstName" id="firstname" name="firstname" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Middlename</ion-label>
+      <ion-input type="text" id="middlename" name="middlename" [(ngModel)]="member.MiddleName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Surname*</ion-label>
+      <ion-input type="text" id="lastname" name="lastname" [(ngModel)]="member.Surname" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Phone Number</ion-label>
+      <ion-input type="number" id="mobileNumber" name="mobileNumber" [(ngModel)]="member.MobileNumber" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" id="email" name="email" [(ngModel)]="member.EmailAddress" disabled pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
+    </ion-item>
+    <ion-row padding>
+      <ion-col col-3>
+        <ion-label floating class="grey-label">D.O.B*</ion-label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item>
+          <ion-label floating>Day</ion-label>
+          <ion-select [(ngModel)]="dateOfBirth.day" id="dob_day" name="dob_day" required>
+            <ion-option *ngFor="let day of days" [value]="day">{{day}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item>
+          <ion-label floating>Month</ion-label>
+          <ion-select [(ngModel)]="dateOfBirth.month" id="dob_month" name="dob_month" required>
+            <ion-option *ngFor="let month of months" [value]="month.value">{{month.text}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item>
+          <ion-label floating>Year</ion-label>
+          <ion-select [(ngModel)]="dateOfBirth.year" id="dob_year" name="dob_year" required>
+            <ion-option *ngFor="let year of years" [value]="year">{{year}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-item>
+      <ion-label floating>Gender*</ion-label>
+      <ion-select [(ngModel)]="member.Gender" id="gender" name="gender" required>
+        <ion-option value="F">Female</ion-option>
+        <ion-option value="M">Male</ion-option>
+      </ion-select>
+    </ion-item>
 
 
-      <ion-item padding>
-        <ion-label class="grey-label">Have you been initiated?</ion-label>
-        <ion-toggle [(ngModel)]="member.InitiationFlag" name="initiated"></ion-toggle>
-      </ion-item>
+    <ion-item>
+      <ion-label floating>Marital Status*</ion-label>
+      <ion-select [(ngModel)]="member.MaritalStatus" id="maritalStatus" name="maritalStatus" required>
+        <ion-option *ngFor="let item of maritalStatusList" [value]="item.value">{{item.text}}</ion-option>
+      </ion-select>
+    </ion-item>
 
-      <ion-item padding>
-        <ion-label class="grey-label">Are you a Magus?</ion-label>
-        <ion-toggle [(ngModel)]="member.MagusFlag" name="magus"></ion-toggle>
-      </ion-item>
 
-      <ion-row padding *ngIf="member.MagusFlag">
-        <ion-col col-3>
-          <ion-label floating class="grey-label">Magus Date</ion-label>
-        </ion-col>
-        <ion-col col-3>
-          <ion-item>
-            <ion-label floating>Day</ion-label>
-            <ion-select [(ngModel)]="magusDate.day" id="magus_day" name="magus_day">
-              <ion-option *ngFor="let day of days" [value]="day">{{day}}</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-3>
-          <ion-item>
-            <ion-label floating>Month</ion-label>
-            <ion-select [(ngModel)]="magusDate.month"  id="magus_month" name="magus_month">
-                <ion-option *ngFor="let month of months" [value]="month.value">{{month.text}}</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-3>
-          <ion-item>
-            <ion-label floating>Year*</ion-label>
-            <ion-select [(ngModel)]="magusDate.year" id="magus_year" name="magus_year" required>
-              <ion-option *ngFor="let year of years" [value]="year">{{year}}</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-      </ion-row>
+    <ion-item padding>
+      <ion-label class="grey-label">Have you been initiated?</ion-label>
+      <ion-toggle [(ngModel)]="member.InitiationFlag" name="initiated"></ion-toggle>
+    </ion-item>
 
-      <button ion-button block large icon-start color="dark" (click)="NextPage()" [disabled]="!memberForm.form.valid">Next
-        <ion-icon name="ios-arrow-round-forward"></ion-icon>
-      </button>
-      </form>
-   </ion-content>
+    <ion-item padding>
+      <ion-label class="grey-label">Are you a Magus?</ion-label>
+      <ion-toggle [(ngModel)]="member.MagusFlag" name="magus"></ion-toggle>
+    </ion-item>
+
+    <ion-row padding *ngIf="member.MagusFlag">
+      <ion-col col-3>
+        <ion-label floating class="grey-label">Magus Date</ion-label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item>
+          <ion-label floating>Day</ion-label>
+          <ion-select [(ngModel)]="magusDate.day" id="magus_day" name="magus_day">
+            <ion-option *ngFor="let day of days" [value]="day">{{day}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item>
+          <ion-label floating>Month</ion-label>
+          <ion-select [(ngModel)]="magusDate.month" id="magus_month" name="magus_month">
+            <ion-option *ngFor="let month of months" [value]="month.value">{{month.text}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item>
+          <ion-label floating>Year*</ion-label>
+          <ion-select [(ngModel)]="magusDate.year" id="magus_year" name="magus_year" required>
+            <ion-option *ngFor="let year of years" [value]="year">{{year}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <button ion-button block large icon-start color="dark" (click)="NextPage()" [disabled]="!memberForm.form.valid">Next
+      <ion-icon name="ios-arrow-round-forward"></ion-icon>
+    </button>
+  </form>
+</ion-content>

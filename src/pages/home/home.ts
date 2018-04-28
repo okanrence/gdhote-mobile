@@ -17,9 +17,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  isAdmin;
-  userName;
-  loginTime;
+
   constructor(private navCtrl: NavController,
      private notificationCtrl: NotificationsServiceProvider) {
   }
@@ -32,5 +30,5 @@ export class HomePage {
     this.notificationCtrl.showToast("Keep Calm, Coming Soon", 5000, "bottom");
   }
 
-  
+
 }

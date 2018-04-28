@@ -1,66 +1,65 @@
-import { Nav } from 'ionic-angular';
+import { Nav } from "ionic-angular";
 // import { Network } from '@ionic-native/network';
-import { FIREBASE_CONFIG } from './firebase.credentials';
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { FIREBASE_CONFIG } from "./firebase.credentials";
+import { BrowserModule } from "@angular/platform-browser";
+import { ErrorHandler, NgModule } from "@angular/core";
+import { IonicApp, IonicErrorHandler, IonicModule } from "ionic-angular";
 
-import { MyApp } from './app.component';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { MyApp } from "./app.component";
+import { StatusBar } from "@ionic-native/status-bar";
+import { SplashScreen } from "@ionic-native/splash-screen";
 
-import { DatePicker } from '@ionic-native/date-picker';
-import { MemberServiceProvider } from '../providers/member-service/member-service';
+import { DatePicker } from "@ionic-native/date-picker";
+import { MemberServiceProvider } from "../providers/member-service/member-service";
 
-import { FormsModule } from '@angular/forms'
-import { LoginServiceProvider } from '../providers/login-service/login-service';
+import { FormsModule } from "@angular/forms";
+import { LoginServiceProvider } from "../providers/login-service/login-service";
 
-import { AngularFireModule } from 'angularfire2'
+import { AngularFireModule } from "angularfire2";
 
-import { AngularFireDatabaseModule } from 'angularfire2/database'
+import { AngularFireDatabaseModule } from "angularfire2/database";
 
-import { HttpModule } from '@angular/http'
-import { NotificationsServiceProvider } from './../providers/notifications-service/notifications-service';
+import { HttpModule } from "@angular/http";
+import { NotificationsServiceProvider } from "./../providers/notifications-service/notifications-service";
 
-import { CommonServicesProvider } from '../providers/common-services/common-services';
-import { HttpServiceProvider } from '../providers/http-service/http-service';
-import { Network } from '@ionic-native/network';
-import { StorageServiceProvider } from '../providers/storage-service/storage-service';
-import { NativeStorage } from '@ionic-native/native-storage';
-import { IonicStorageModule } from '@ionic/storage';
-import { PublicationServicesProvider } from '../providers/publication-services/publication-services';
-import { Dictionary } from '../providers/dictionary-services/dictionary-services';
-import { PaymentServicesProvider } from '../providers/payment-services/payment-services';
+import { CommonServicesProvider } from "../providers/common-services/common-services";
+import { HttpServiceProvider } from "../providers/http-service/http-service";
+import { Network } from "@ionic-native/network";
+import { StorageServiceProvider } from "../providers/storage-service/storage-service";
+import { NativeStorage } from "@ionic-native/native-storage";
+import { IonicStorageModule } from "@ionic/storage";
+import { PublicationServicesProvider } from "../providers/publication-services/publication-services";
+import { Dictionary } from "../providers/dictionary-services/dictionary-services";
+import { PaymentServicesProvider } from "../providers/payment-services/payment-services";
 @NgModule({
-  declarations: [
-    MyApp
-  ],
+  declarations: [MyApp],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     FormsModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule,HttpModule,
+    AngularFireDatabaseModule,
+    HttpModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp
-  ],
+  entryComponents: [MyApp],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    MemberServiceProvider, DatePicker, LoginServiceProvider,
+    MemberServiceProvider,
+    DatePicker,
+    LoginServiceProvider,
     NotificationsServiceProvider,
     CommonServicesProvider,
     HttpServiceProvider,
-    Network, NativeStorage,
+    Network,
+    NativeStorage,
     StorageServiceProvider,
     PublicationServicesProvider,
     Dictionary,
-    PaymentServicesProvider, 
-
+    PaymentServicesProvider
   ]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,10 +1,10 @@
-import { DateObj } from './../../models/date.interface';
-import { CommonServicesProvider } from './../../providers/common-services/common-services';
-import { MemberServiceProvider } from './../../providers/member-service/member-service';
-import { NotificationsServiceProvider } from './../../providers/notifications-service/notifications-service';
-import { Member } from './../../models/member.interface';
-import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { DateObj } from "./../../models/date.interface";
+import { CommonServicesProvider } from "./../../providers/common-services/common-services";
+import { MemberServiceProvider } from "./../../providers/member-service/member-service";
+import { NotificationsServiceProvider } from "./../../providers/notifications-service/notifications-service";
+import { Member } from "./../../models/member.interface";
+import { Component } from "@angular/core";
+import { IonicPage, NavController } from "ionic-angular";
 
 /**
  * Generated class for the UpdateDetailsPage page.
@@ -15,30 +15,28 @@ import { IonicPage, NavController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-update-details',
-  templateUrl: 'update-details.html',
+  selector: "page-update-details",
+  templateUrl: "update-details.html"
 })
-
-
 export class UpdateDetailsPage {
+  public dateOfBirth: DateObj;
+  public magusDate: DateObj;
+  public phoneNumber: string;
 
-  dateOfBirth: DateObj;
-  magusDate: DateObj;
-  phoneNumber : string;
+  public years: number[];
+  public days: number[];
+  public months: any;
 
-  years: number[];
-  days: number[];
-  months: [{}];
+  public maritalStatusList: any;
 
-  maritalStatusList: [{}];
-  
   member: Member;
-  
-  constructor(private navCtrl: NavController,
-    private notificationCtrl :NotificationsServiceProvider,
-     private memberCrtl : MemberServiceProvider,
-     private commonCtrl: CommonServicesProvider) {
 
+  constructor(
+    private navCtrl: NavController,
+    private notificationCtrl: NotificationsServiceProvider,
+    private memberCrtl: MemberServiceProvider,
+    private commonCtrl: CommonServicesProvider
+  ) {
     this.member = new Member();
     this.dateOfBirth = new DateObj();
     this.magusDate = new DateObj();
@@ -47,79 +45,71 @@ export class UpdateDetailsPage {
     this.years = this.commonCtrl.GetYears();
     this.months = this.commonCtrl.GetMonths();
     this.maritalStatusList = this.commonCtrl.GetMaritalStatusList();
-
   }
 
-  ionViewDidLoad() {
-
-  }
-
+  ionViewDidLoad() {}
 
   getMember() {
     let loading = this.notificationCtrl.showLoading("..please wait..");
     loading.present().then(() => {
-      this.memberCrtl.getMember(this.phoneNumber)
-        .subscribe(res => {
+      this.memberCrtl.getMember(this.phoneNumber).subscribe(
+        res => {
           console.log(res);
-        if(res.length > 1){
-
-        }else{
-          this.populateValues(res[0]);
-        }
-          
-          // else{
-          // this.notificationCtrl.showAlert(res.ErrorMessage);
-          // }
+          if (res.length > 1) {
+            //pop-up a modal and allow user select which one. Hopefully i will have time to implement this one day.
+          } else {
+            this.populateValues(res[0]);
+          }
         },
 
         error => {
           loading.dismiss();
-          console.log("Error Response " + JSON.stringify(error))
+          console.log("Error Response " + JSON.stringify(error));
           this.notificationCtrl.showAlert(error);
         },
 
-        () => loading.dismiss());
+        () => loading.dismiss()
+      );
     });
 
+    // getMember(searchbar) {
+    //   // Reset items back to all of the items
+    //  // this.initializeItems();
 
-  // getMember(searchbar) {
-  //   // Reset items back to all of the items
-  //  // this.initializeItems();
-  
-  //   let q:string = searchbar.srcElement.value;
-  //   // if the value is an empty string don't filter the items
-  //   if (!q || q.length < 11) {
-  //     return;
-  //   }
-  
-  //   // if(q.length < 11){
-  //   //   return;
-  //   // }
+    //   let q:string = searchbar.srcElement.value;
+    //   // if the value is an empty string don't filter the items
+    //   if (!q || q.length < 11) {
+    //     return;
+    //   }
 
-  //   let loading = this.notificationCtrl.showLoading("..please wait..");
-  //   loading.present().then(() => {
-  //     this.memberCrtl.getMember(q)
-  //       .subscribe(res => {
-  //         console.log(res);
-  //       if(res.length > 1){
+    //   // if(q.length < 11){
+    //   //   return;
+    //   // }
 
-  //       }else{
-  //         this.populateValues(res[0]);
-  //       }
-          
-  //         // else{
-  //         // this.notificationCtrl.showAlert(res.ErrorMessage);
-  //         // }
-  //       },
+    //   let loading = this.notificationCtrl.showLoading("..please wait..");
+    //   loading.present().then(() => {
+    //     this.memberCrtl.getMember(q)
+    //       .subscribe(res => {
+    //         console.log(res);
+    //       if(res.length > 1){
 
-  //       error => {
-  //         loading.dismiss();
-  //         console.log("Error Response " + JSON.stringify(error))
-  //         this.notificationCtrl.showAlert(error);
-  //       },
+    //       }else{
+    //         this.populateValues(res[0]);
+    //       }
 
-  //       () => loading.dismiss());
-  //   });
+    //         // else{
+    //         // this.notificationCtrl.showAlert(res.ErrorMessage);
+    //         // }
+    //       },
+
+    //       error => {
+    //         loading.dismiss();
+    //         console.log("Error Response " + JSON.stringify(error))
+    //         this.notificationCtrl.showAlert(error);
+    //       },
+
+    //       () => loading.dismiss());
+    //   });
 
     // this.countryList = this.countryList.filter((v) => {
     //   if(v.name && q) {
@@ -129,28 +119,26 @@ export class UpdateDetailsPage {
     //     return false;
     //   }
     // });
-  
+
     //console.log(q, this.countryList.length);
-  
   }
   NextPage() {
     let loader: any = this.notificationCtrl.showLoading("..please wait..");
     loader.present().then(() => {
       this.member.MagusDate = this.commonCtrl.GetDateString(this.magusDate);
-      this.member.DateOfBirth =  this.commonCtrl.GetDateString(this.dateOfBirth);
+      this.member.DateOfBirth = this.commonCtrl.GetDateString(this.dateOfBirth);
       this.member._should_update = true;
-     console.log(JSON.stringify(this.member));
+      console.log(JSON.stringify(this.member));
       this.navCtrl.push("ConfirmationPage", { member: this.member });
-
     });
 
     loader.dismiss();
   }
 
-populateValues(res){
-  this.member = res; 
-  this.dateOfBirth = this.commonCtrl.GetDate(this.member.DateOfBirth);
-   this.magusDate = this.commonCtrl.GetDate(this.member.MagusDate);
-  this.member._should_update = true;
+  populateValues(res) {
+    this.member = res;
+    this.dateOfBirth = this.commonCtrl.GetDate(this.member.DateOfBirth);
+    this.magusDate = this.commonCtrl.GetDate(this.member.MagusDate);
+    this.member._should_update = true;
   }
 }

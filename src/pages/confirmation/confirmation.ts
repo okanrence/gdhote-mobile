@@ -1,10 +1,9 @@
-import { CommonServicesProvider } from './../../providers/common-services/common-services';
-import { NotificationsServiceProvider } from './../../providers/notifications-service/notifications-service';
-import { MemberServiceProvider } from './../../providers/member-service/member-service';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Member } from './../../models/member.interface';
-
+import { CommonServicesProvider } from "./../../providers/common-services/common-services";
+import { NotificationsServiceProvider } from "./../../providers/notifications-service/notifications-service";
+import { MemberServiceProvider } from "./../../providers/member-service/member-service";
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { Member } from "./../../models/member.interface";
 
 /**
  * Generated class for the ConfirmationPage page.
@@ -15,51 +14,49 @@ import { Member } from './../../models/member.interface';
 
 @IonicPage()
 @Component({
-  selector: 'page-confirmation',
-  templateUrl: 'confirmation.html',
+  selector: "page-confirmation",
+  templateUrl: "confirmation.html"
 })
 export class ConfirmationPage {
-
-member = new Member();
-maritalStatusCode: string;
-  constructor(private navCtrl: NavController,
+  public member = new Member();
+  public maritalStatusCode: string;
+  constructor(
+    private navCtrl: NavController,
     private navParams: NavParams,
     private notificationsCtrl: NotificationsServiceProvider,
     private memberCtrl: MemberServiceProvider,
-  private commonCtrl: CommonServicesProvider) {
-   
-  }
+    private commonCtrl: CommonServicesProvider
+  ) {}
 
   Back(): void {
     this.navCtrl.pop();
   }
 
-  
-  ionViewWillEnter(){
-    
-    this.member = <Member>this.navParams.get('member');
-    console.log("Log NavMember:" + JSON.stringify(this.member))
-    
-    if(this.member){
-      this.maritalStatusCode = this.commonCtrl.GetMaritalStatusCode(this.member.MaritalStatus);
-    }else{
-      this.navCtrl.push("RegisterMemberPage");
+  ionViewWillEnter() {
+    this.member = <Member>this.navParams.get("member");
+    console.log("Log NavMember:" + JSON.stringify(this.member));
+
+    if (this.member) {
+      this.maritalStatusCode = this.commonCtrl.GetMaritalStatusCode(
+        this.member.MaritalStatus
+      );
+    } else {
+      this.navCtrl.push("RegisterMemberPage"); // this logic is not working for some reason. I am not even sure this makes any sense in the first place
     }
-    
   }
 
   SaveMember(member: Member): void {
     console.log(member);
-    let loading = this.notificationsCtrl.showLoading("...please wait...")
+    let loading = this.notificationsCtrl.showLoading("...please wait...");
     loading.present().then(() => {
-      this.memberCtrl.SaveMember(this.member)
-        .subscribe(data => {
+      this.memberCtrl.SaveMember(this.member).subscribe(
+        data => {
           console.log("Response" + data);
-          if (data.ErrorCode == '00') {
-            this.notificationsCtrl.showToast('Your details have been registered successfully').then(() =>
-              this.navCtrl.push("HomePage"));
-          }
-          else {
+          if (data.ErrorCode == "00") {
+            this.notificationsCtrl
+              .showToast("Your details have been registered successfully")
+              .then(() => this.navCtrl.push("HomePage"));
+          } else {
             this.notificationsCtrl.showAlert(data.ErrorMessage, "Error");
           }
         },
@@ -71,13 +68,10 @@ maritalStatusCode: string;
           // console.log("Error.body" + JSON.stringify(error.body));
           // console.log("Error._body", + JSON.stringify(error._body));
           this.notificationsCtrl.showAlert(error, "error");
-
         },
 
-        () => loading.dismiss());
+        () => loading.dismiss()
+      );
     });
   }
- 
 }
-
-

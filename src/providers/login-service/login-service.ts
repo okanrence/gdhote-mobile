@@ -1,7 +1,7 @@
-import { Headers } from '@angular/http';
-import { Injectable } from '@angular/core';
-import { endpoints } from '../endpoints';
-import { HttpServiceProvider } from '../http-service/http-service';
+import { Headers } from "@angular/http";
+import { Injectable } from "@angular/core";
+import { endpoints } from "../endpoints";
+import { HttpServiceProvider } from "../http-service/http-service";
 
 /*
   Generated class for the LoginServiceProvider provider.
@@ -11,17 +11,22 @@ import { HttpServiceProvider } from '../http-service/http-service';
 */
 @Injectable()
 export class LoginServiceProvider {
-
   constructor(private httpCtrl: HttpServiceProvider) {
-    console.log('Hello LoginServiceProvider Provider');
+    console.log("Hello LoginServiceProvider Provider");
   }
 
   LoginUser(username: string, password: string): any {
     var headers = new Headers();
-    headers.append('user_type', 'administrator');
+    headers.append("user_type", "administrator");
 
-    let body =  "username=" + username + "&password=" + password + "&grant_type=" + 'password';
- 
+    let body =
+      "username=" +
+      username +
+      "&password=" +
+      password +
+      "&grant_type=" +
+      "password";
+
     let url = endpoints.baseUrl + endpoints.auth;
     return this.httpCtrl.auth(body, headers, url);
   }

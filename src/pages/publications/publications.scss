@@ -2,21 +2,17 @@ page-publications {
     ion-card {
         position: relative;
         text-align: center;
-      }
-    
-      .card-title {
-        position: top;
-        // top: 1%;
+    }
+    .card-title {
+        position: top; // top: 1%;
         font-size: 2.0em;
         width: 100%;
         font-weight: bold;
         color: rgb(12, 12, 12);
-      }
-    
-      .card-subtitle {
-       
+    }
+    .card-subtitle {
         font-size: 0.6em;
         width: 100%;
         color: rgb(10, 10, 10);
-      }
+    }
 }

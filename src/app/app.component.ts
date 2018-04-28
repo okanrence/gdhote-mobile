@@ -1,27 +1,27 @@
-import { NotificationsServiceProvider } from './../providers/notifications-service/notifications-service';
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { Network } from '@ionic-native/network';
-
-
+import { NotificationsServiceProvider } from "./../providers/notifications-service/notifications-service";
+import { Component, ViewChild } from "@angular/core";
+import { Nav, Platform } from "ionic-angular";
+import { StatusBar } from "@ionic-native/status-bar";
+import { SplashScreen } from "@ionic-native/splash-screen";
+import { Network } from "@ionic-native/network";
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: "app.html"
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: string = 'HomePage';
+  rootPage: string = "HomePage";
 
-  pages: Array<{ title: string, component: any }>;
+  pages: Array<{ title: string; component: any }>;
 
-  constructor(public platform: Platform,
+  constructor(
+    public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     private network: Network,
-    private notificationsCtrl: NotificationsServiceProvider) {
+    private notificationsCtrl: NotificationsServiceProvider
+  ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -29,7 +29,6 @@ export class MyApp {
     //   { title: 'Home', component: HomePage },
     //    { title: 'List', component: ListPage }
     //  ];
-
   }
 
   initializeApp() {
@@ -40,11 +39,14 @@ export class MyApp {
       this.splashScreen.hide();
 
       this.network.onDisconnect().subscribe(() => {
-        this.notificationsCtrl.showToast("Network disconnected. Please ensure you are connected to the internet to use the app", 5000);
+        this.notificationsCtrl.showToast(
+          "Network disconnected. Please ensure you are connected to the internet to use the app",
+          5000
+        );
       });
 
       this.network.onConnect().subscribe(() => {
-        this.notificationsCtrl.showToast('Network connected!');
+        this.notificationsCtrl.showToast("Network connected!");
         // We just got a connection but we need to wait briefly
         // before we determine the connection type. Might need to wait.
         // prior to doing any api requests as well.
@@ -54,7 +56,6 @@ export class MyApp {
         //   }
         // }, 3000);
       });
-
     });
   }
 

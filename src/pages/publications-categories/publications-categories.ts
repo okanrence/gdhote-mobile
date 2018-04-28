@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PublicationServicesProvider } from '../../providers/publication-services/publication-services';
-import { NotificationsServiceProvider } from './../../providers/notifications-service/notifications-service';
-import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import { Component } from "@angular/core";
+import { IonicPage, NavController } from "ionic-angular";
+import { PublicationServicesProvider } from "../../providers/publication-services/publication-services";
+import { NotificationsServiceProvider } from "./../../providers/notifications-service/notifications-service";
+import { AlertController } from "ionic-angular/components/alert/alert-controller";
 
 /**
  * Generated class for the PublicationsCategoriesPage page.
@@ -13,33 +13,32 @@ import { AlertController } from 'ionic-angular/components/alert/alert-controller
 
 @IonicPage()
 @Component({
-  selector: 'page-publications-categories',
-  templateUrl: 'publications-categories.html',
+  selector: "page-publications-categories",
+  templateUrl: "publications-categories.html"
 })
 export class PublicationsCategoriesPage {
-
-categories: any;
-  constructor(private categoriesCtrl: PublicationServicesProvider,
-     private notificationsCtrl: NotificationsServiceProvider,
-   private alertCtrl: AlertController,
-  private navCtrl: NavController, private vnavParamsCtrl:  NavParams) {
-  }
+  public categories: any;
+  constructor(
+    private categoriesCtrl: PublicationServicesProvider,
+    private notificationsCtrl: NotificationsServiceProvider,
+    private alertCtrl: AlertController,
+    private navCtrl: NavController
+  ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PublicationsCategoriesPage');
+    console.log("ionViewDidLoad PublicationsCategoriesPage");
     this.GetCategories();
   }
 
-  GetCategories(){
-
+  GetCategories() {
     let loading = this.notificationsCtrl.showLoading("..please wait..");
 
     loading.present().then(() => {
-    this.categoriesCtrl.getCategories()
-        .subscribe(res => {
+      this.categoriesCtrl.getCategories().subscribe(
+        res => {
           console.log(res);
           this.categories = res;
-          
+
           // else{
           // this.notificationCtrl.showAlert(res.ErrorMessage);
           // }
@@ -47,38 +46,34 @@ categories: any;
 
         error => {
           loading.dismiss();
-          console.log("Error Response " + JSON.stringify(error))
+          console.log("Error Response " + JSON.stringify(error));
           this.notificationsCtrl.showAlert(error);
         },
 
         () => loading.dismiss()
-      
-      )
-   });
+      );
+    });
   }
-
-  
 
   presentPrompt() {
     let alert = this.alertCtrl.create({
-      title: 'Enter your phonenumber',
+      title: "Enter your phonenumber",
       inputs: [
         {
-          name: 'phoneNumber',
-          placeholder: 'PhoneNumber'
+          name: "phoneNumber",
+          placeholder: "PhoneNumber"
         }
-        
       ],
       buttons: [
         {
-          text: 'Cancel',
-          role: 'cancel',
+          text: "Cancel",
+          role: "cancel",
           handler: data => {
-            console.log('Cancel clicked');
+            console.log("Cancel clicked");
           }
         },
         {
-          text: 'Okay',
+          text: "Okay",
           handler: data => {
             // if (1 == 1) {
             //   this.NavigateToPage(data.phoneNumber);
@@ -94,7 +89,7 @@ categories: any;
     alert.present();
   }
 
-  NavigateToPage(phoneNumber:string): void {
-    this.navCtrl.push('PublicationsPage');
+  NavigateToPage(phoneNumber: string): void {
+    this.navCtrl.push("PublicationsPage");
   }
 }
