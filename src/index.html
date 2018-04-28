@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <title>Ionic App</title>
@@ -18,18 +19,20 @@
   <!-- cordova.js required for cordova apps (remove if not needed) -->
   <script src="cordova.js"></script>
 
-  <!-- un-comment this code to enable service worker
-  <script>
+
+  <!-- un-comment this code to enable service worker -->
+  <!-- <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
         .then(() => console.log('service worker installed'))
         .catch(err => console.error('Error', err));
     }
-  </script>-->
+  </script> -->
 
   <link href="build/main.css" rel="stylesheet">
 
 </head>
+
 <body>
 
   <!-- Ionic's root component and where the app will load -->
@@ -45,5 +48,29 @@
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
 
+  <script type="text/javascript" src="rave.js"></script>
+
+  <script type="text/javascript">
+    function pay() {
+      console.log("I am here");
+      initRavePay({
+        'PBFPubKey': 'FLWPUBK-f16a330e4947847fb656ec248f91f259-X',
+        'amount': '2999',
+        'currency': 'NGN',
+        'country': 'NG',
+        'customer_email': '',
+        'customer_firstname': 'Jon',
+        'customer_lastname': 'Snow',
+        'pay_button_text': 'Pay now',
+        'custom_title': 'GDHOTE',
+        'custom_description': '',
+        'redirect_url': '',
+        'custom_logo': '',
+        'txref': '8042842244'
+      });
+    }
+  </script>
+
 </body>
+
 </html>

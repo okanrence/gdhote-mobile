@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController } from "ionic-angular";
 import { PaymentServicesProvider } from "../../providers/payment-services/payment-services";
-
+// import { initRavePay } from "cordova-rave";
 /**
  * Generated class for the PaymentsPage page.
  *
@@ -15,6 +15,8 @@ import { PaymentServicesProvider } from "../../providers/payment-services/paymen
   templateUrl: "payments.html"
 })
 export class PaymentsPage {
+  public amount: string;
+
   public paymentTypes: any;
   public paymentModes: any;
   public currencies: any;
@@ -29,8 +31,7 @@ export class PaymentsPage {
 
   constructor(
     private navCtrl: NavController,
-    private navParams: NavParams,
-    private paymentServicesCtrl: PaymentServicesProvider
+    private paymentsCtrl: PaymentServicesProvider
   ) {
     this.GetPaymentTypes();
     this.GetPaymentModes();
@@ -44,7 +45,7 @@ export class PaymentsPage {
   public doRefresh(refresher) {}
 
   public GetPaymentTypes() {
-    this.paymentServicesCtrl.GetPaymentTypes().subscribe(
+    this.paymentsCtrl.GetPaymentTypes().subscribe(
       data => {
         this.paymentTypes = data;
         this.showPaymentTypesSpin = false;
@@ -59,8 +60,29 @@ export class PaymentsPage {
     );
   }
 
+  // public makePayment(amount) {
+  //   console.log("got makePayment " + amount);
+
+  //   initRavePay({
+  //     PBFPubKey: "FLWPUBK-d9dda4676e150ec83eac4da33d8a2f4c-X",
+  //     amount: amount,
+  //     currency: "NGN",
+  //     country: "NG",
+  //     customer_email: "user@example.com",
+  //     customer_firstname: "Jon",
+  //     customer_lastname: "Snow",
+  //     pay_button_text: "Pay now",
+  //     custom_title: "",
+  //     custom_description: "",
+  //     redirect_url: "https://www.google.com",
+  //     custom_logo: "",
+  //     txref: "CD-102297-RV098299"
+  //   });
+
+  // }
+
   public GetPaymentModes() {
-    this.paymentServicesCtrl.GetPaymentModes().subscribe(
+    this.paymentsCtrl.GetPaymentModes().subscribe(
       data => {
         this.paymentModes = data;
         this.showPaymentModesSpin = false;
@@ -76,7 +98,7 @@ export class PaymentsPage {
   }
 
   public GetCurrencies() {
-    this.paymentServicesCtrl.GetCurrencies().subscribe(
+    this.paymentsCtrl.GetCurrencies().subscribe(
       data => {
         this.currencies = data;
         this.showPaymentModesSpin = false;

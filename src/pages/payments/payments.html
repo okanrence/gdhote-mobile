@@ -4,6 +4,30 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<!--
+<script type="text/javascript" src="../../rave.js"></script>
+
+<script>
+  function pay() {
+    initRavePay({
+      'PBFPubKey': 'FLWPUBK-d9dda4676e150ec83eac4da33d8a2f4c-X',
+      'amount': 'amount',
+      'currency': 'NGN',
+      'country': 'NG',
+      'customer_email': 'user@example.com',
+      'customer_firstname': 'Jon',
+      'customer_lastname': 'Snow',
+      'pay_button_text': 'Pay now',
+      'custom_title': '',
+      'custom_description': '',
+      'redirect_url': 'https://www.google.com',
+      'custom_logo': '',
+      'txref': 'CD-102297-RV098299'
+    });
+  }
+</script> -->
+
+
 <ion-header>
 
   <ion-navbar>
@@ -66,7 +90,7 @@
 
       <ion-item>
         <ion-label floating>Amount*</ion-label>
-        <ion-input type="text" id="amount" name="amount"></ion-input>
+        <ion-input type="number" id="amount" name="amount" [(ngModel)]="amount"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -75,7 +99,7 @@
       </ion-item>
 
 
-      <button ion-button block large icon-start color="dark" [disabled]="!memberForm.form.valid">Next
+      <button ion-button block large icon-start color="dark" [disabled]="!memberForm.form.valid" onclick="pay()">Next
         <ion-icon name="ios-arrow-round-forward"></ion-icon>
       </button>
     </form>
