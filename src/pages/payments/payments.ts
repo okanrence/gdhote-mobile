@@ -1,6 +1,8 @@
+import { Payment } from "./../../models/payment.interface";
 import { Component } from "@angular/core";
 import { IonicPage, NavController } from "ionic-angular";
 import { PaymentServicesProvider } from "../../providers/payment-services/payment-services";
+
 // import { initRavePay } from "cordova-rave";
 /**
  * Generated class for the PaymentsPage page.
@@ -15,15 +17,16 @@ import { PaymentServicesProvider } from "../../providers/payment-services/paymen
   templateUrl: "payments.html"
 })
 export class PaymentsPage {
-  public amount: string;
+  // public amount: string;
 
   public paymentTypes: any;
   public paymentModes: any;
   public currencies: any;
 
-  public paymentType: any;
-  public paymentMode: any;
-  public currency: any;
+  public payment = new Payment();
+  // public paymentType: any;
+  // public paymentMode: any;
+  // public currency: any;
 
   public showPaymentTypesSpin: boolean = true;
   public showPaymentModesSpin: boolean = true;
@@ -36,6 +39,7 @@ export class PaymentsPage {
     this.GetPaymentTypes();
     this.GetPaymentModes();
     this.GetCurrencies();
+    this.payment.txn_ref = '7911081-4810'
   }
 
   ionViewDidLoad() {
@@ -60,26 +64,25 @@ export class PaymentsPage {
     );
   }
 
-  // public makePayment(amount) {
-  //   console.log("got makePayment " + amount);
+  public makePayment(payment: Payment) {
+    console.log("got makePayment ");
 
-  //   initRavePay({
-  //     PBFPubKey: "FLWPUBK-d9dda4676e150ec83eac4da33d8a2f4c-X",
-  //     amount: amount,
-  //     currency: "NGN",
-  //     country: "NG",
-  //     customer_email: "user@example.com",
-  //     customer_firstname: "Jon",
-  //     customer_lastname: "Snow",
-  //     pay_button_text: "Pay now",
-  //     custom_title: "",
-  //     custom_description: "",
-  //     redirect_url: "https://www.google.com",
-  //     custom_logo: "",
-  //     txref: "CD-102297-RV098299"
-  //   });
-
-  // }
+    window.initRavePay({
+      // PBFPubKey: "FLWPUBK-d9dda4676e150ec83eac4da33d8a2f4c-X",
+      amount: payment.amount,
+      // currency: "NGN",
+      country: "NG",
+      //customer_email: "user@example.com",
+      // customer_firstname: "Jon",
+      // customer_lastname: "Snow",
+      pay_button_text: "Pay now",
+      custom_title: "GDHOTE",
+      custom_description: "The Great Divine Holy Order of the Third Era",
+      // redirect_url: "https://www.google.com",
+      // custom_logo: "",
+      txref: payment.txn_ref
+    });
+  }
 
   public GetPaymentModes() {
     this.paymentsCtrl.GetPaymentModes().subscribe(

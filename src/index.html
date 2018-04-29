@@ -19,7 +19,27 @@
   <!-- cordova.js required for cordova apps (remove if not needed) -->
   <script src="cordova.js"></script>
 
-
+  <script type="text/javascript" src="rave.js"></script>
+  <!--
+  <script>
+    function pay() {
+      initRavePay({
+        'PBFPubKey': 'FLWPUBK-f16a330e4947847fb656ec248f91f259-X',
+        'amount': '5000',
+        'currency': 'NGN',
+        'country': 'NG',
+        'customer_email': 'okanrence@gmail.com',
+        'customer_firstname': 'olanrewaju',
+        'customer_lastname': 'okanrende',
+        'pay_button_text': 'Pay now',
+        'custom_title': 'GDHOTE',
+        'custom_description': 'The Great Divine Holy Order of the Third Era',
+        'redirect_url': '',
+        'custom_logo': '',
+        'txref': 'CD-102297-RV566509'
+      });
+    }
+  </script> -->
   <!-- un-comment this code to enable service worker -->
   <!-- <script>
     if ('serviceWorker' in navigator) {
@@ -48,28 +68,7 @@
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
 
-  <script type="text/javascript" src="rave.js"></script>
 
-  <script type="text/javascript">
-    function pay() {
-      console.log("I am here");
-      initRavePay({
-        'PBFPubKey': 'FLWPUBK-f16a330e4947847fb656ec248f91f259-X',
-        'amount': '2999',
-        'currency': 'NGN',
-        'country': 'NG',
-        'customer_email': '',
-        'customer_firstname': 'Jon',
-        'customer_lastname': 'Snow',
-        'pay_button_text': 'Pay now',
-        'custom_title': 'GDHOTE',
-        'custom_description': '',
-        'redirect_url': '',
-        'custom_logo': '',
-        'txref': '8042842244'
-      });
-    }
-  </script>
 
 </body>
 

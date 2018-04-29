@@ -56,7 +56,7 @@
 
       <ion-item>
         <ion-label floating>PhoneNumber*</ion-label>
-        <ion-input type="text" id="firstname" name="firstname" required></ion-input>
+        <ion-input type="text" id="phoneNumber" name="phoneNumber" required></ion-input>
       </ion-item>
 
       <ion-item>
@@ -68,38 +68,38 @@
       <ion-item>
         <ion-spinner name="bubbles" *ngIf="showPaymentTypesSpin"></ion-spinner>
         <ion-label floating> Payment Type*</ion-label>
-        <ion-select id="paymentType" name="paymentType" required>
+        <ion-select id="paymentType" name="paymentType" [(ngModel)]="payment.paymentType" required>
           <ion-option *ngFor="let paymentType of paymentTypes" [value]="paymentType.Id">{{paymentType.Name}}</ion-option>
         </ion-select>
 
       </ion-item>
-      <ion-item>
+      <!-- <ion-item>
         <ion-spinner name="bubbles" *ngIf="showPaymentModesSpin"></ion-spinner>
         <ion-label floating>Mode of Payment*</ion-label>
-        <ion-select id="paymentMode" name="paymentMode" required>
+        <ion-select id="paymentMode" name="paymentMode" [(ngModel)]="payment.paymentMode" required>
           <ion-option *ngFor="let paymentMode of paymentModes" [value]="paymentMode.Id">{{paymentMode.Name}}</ion-option>
         </ion-select>
-      </ion-item>
+      </ion-item> -->
 
       <ion-item>
         <ion-label floating>Currency*</ion-label>
-        <ion-select id="currency" name="currency" required>
-          <ion-option *ngFor="let currency of currencies" [value]="currency.Id">{{currency.CurrencyCode}}</ion-option>
+        <ion-select id="currency" name="currency" [(ngModel)]="payment.currency" required>
+          <ion-option *ngFor="let currency of currencies" [value]="currency.Id">{{currency.Name}}</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Amount*</ion-label>
-        <ion-input type="number" id="amount" name="amount" [(ngModel)]="amount"></ion-input>
+        <ion-input type="number" id="amount" name="amount" [(ngModel)]="payment.amount"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Narration</ion-label>
-        <ion-input type="text" id="narration" name="narration"></ion-input>
+        <ion-input type="text" id="narration" name="narration" [(ngModel)]="payment.narration"></ion-input>
       </ion-item>
 
 
-      <button ion-button block large icon-start color="dark" [disabled]="!memberForm.form.valid" onclick="pay()">Next
+      <button ion-button block large icon-start color="dark" (click)="makePayment(payment)">Next
         <ion-icon name="ios-arrow-round-forward"></ion-icon>
       </button>
     </form>
