@@ -47,6 +47,7 @@
     <h3>Make Payment</h3>
     <h6>
       <i>Please note that all fields marked with asterisks (*) are mandatory</i>
+      <i>Enter your phone number and click on "Search"</i>
     </h6>
   </div>
 
@@ -54,52 +55,63 @@
 
     <form #memberForm="ngForm">
 
+      <div style="width:40%" class="left search">
+
+        <ion-item>
+          <ion-searchbar name="search" [(ngModel)]="phoneNumber" [showCancelButton]=true style="width:100%;">
+          </ion-searchbar>
+          <button ion-button block large icon-end color="dark" (click)="getMember()">Search
+            <ion-icon name="md-search"></ion-icon>
+          </button>
+        </ion-item>
+      </div>
+
       <ion-item>
-        <ion-label floating>PhoneNumber*</ion-label>
-        <ion-input type="text" id="phoneNumber" name="phoneNumber" required></ion-input>
+        <ion-label floating>Email*</ion-label>
+        <ion-input type="text" id="email" [(ngModel)]="ViewModel.EmailAddress" name="email" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Name*</ion-label>
-        <ion-input type="text" id="firstname" name="firstname" required></ion-input>
+        <ion-input type="text" id="name" name="name" [(ngModel)]="ViewModel.Name" required></ion-input>
       </ion-item>
 
 
       <ion-item>
         <ion-spinner name="bubbles" *ngIf="showPaymentTypesSpin"></ion-spinner>
-        <ion-label floating> Payment Type*</ion-label>
-        <ion-select id="paymentType" name="paymentType" [(ngModel)]="payment.paymentType" required>
+        <ion-label floating>Payment Type*</ion-label>
+        <ion-select id="paymentType" name="paymentType" [(ngModel)]="ViewModel.PaymentType" required>
           <ion-option *ngFor="let paymentType of paymentTypes" [value]="paymentType.Id">{{paymentType.Name}}</ion-option>
         </ion-select>
 
       </ion-item>
       <!-- <ion-item>
         <ion-spinner name="bubbles" *ngIf="showPaymentModesSpin"></ion-spinner>
-        <ion-label floating>Mode of Payment*</ion-label>
-        <ion-select id="paymentMode" name="paymentMode" [(ngModel)]="payment.paymentMode" required>
+        <ion-label floating>Mode of ViewModel*</ion-label>
+        <ion-select id="paymentMode" name="paymentMode" [(ngModel)]="ViewModel.paymentMode" required>
           <ion-option *ngFor="let paymentMode of paymentModes" [value]="paymentMode.Id">{{paymentMode.Name}}</ion-option>
         </ion-select>
       </ion-item> -->
 
       <ion-item>
         <ion-label floating>Currency*</ion-label>
-        <ion-select id="currency" name="currency" [(ngModel)]="payment.currency" required>
+        <ion-select id="currency" name="currency" [(ngModel)]="ViewModel.Currency" required>
           <ion-option *ngFor="let currency of currencies" [value]="currency.Id">{{currency.Name}}</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Amount*</ion-label>
-        <ion-input type="number" id="amount" name="amount" [(ngModel)]="payment.amount"></ion-input>
+        <ion-input type="number" id="amount" name="amount" [(ngModel)]="ViewModel.Amount"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Narration</ion-label>
-        <ion-input type="text" id="narration" name="narration" [(ngModel)]="payment.narration"></ion-input>
+        <ion-input type="text" id="narration" name="narration" [(ngModel)]="ViewModel.Narration"></ion-input>
       </ion-item>
 
 
-      <button ion-button block large icon-start color="dark" (click)="makePayment(payment)">Next
+      <button ion-button block large icon-start color="dark" (click)="InitiatePayment(ViewModel)">Next
         <ion-icon name="ios-arrow-round-forward"></ion-icon>
       </button>
     </form>

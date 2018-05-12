@@ -41,7 +41,8 @@ export class ConfirmationPage {
         this.member.MaritalStatus
       );
     } else {
-      this.navCtrl.push("RegisterMemberPage"); // this logic is not working for some reason. I am not even sure this makes any sense in the first place
+      // this block is not working for some reason. I am not even sure this makes any sense in the first place.
+      this.navCtrl.push("RegisterMemberPage");
     }
   }
 
@@ -63,10 +64,6 @@ export class ConfirmationPage {
 
         error => {
           loading.dismiss();
-          // console.log(error);
-          // console.log(JSON.stringify(error));
-          // console.log("Error.body" + JSON.stringify(error.body));
-          // console.log("Error._body", + JSON.stringify(error._body));
           this.notificationsCtrl.showAlert(error, "error");
         },
 

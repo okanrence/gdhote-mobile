@@ -1,3 +1,4 @@
+import { Payment } from './../../models/payment.interface';
 import { Injectable } from "@angular/core";
 import "rxjs/add/operator/map";
 import { HttpServiceProvider } from "../http-service/http-service";
@@ -32,5 +33,11 @@ export class PaymentServicesProvider {
     var headers = new Headers();
     let url = endpoints.baseUrl + endpoints.getCurrencies;
     return this.httpCtrl.get(headers, url);
+  }
+
+  InitiatePayment(payment: Payment): Observable<any> {
+    var headers = new Headers();
+    let url = endpoints.baseUrl + endpoints.initiatePayment;
+    return this.httpCtrl.post(payment, headers, url);
   }
 }

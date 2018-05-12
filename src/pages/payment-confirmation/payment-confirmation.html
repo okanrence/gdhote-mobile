@@ -5,14 +5,86 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>payment-confirmation</ion-title>
+  <ion-navbar color="secondary">
+    <ion-title>GDHOTE Kiosk</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+  <div padding>
+    <h6>
+      <i>Please confirm details before paying </i>
+    </h6>
+  </div>
 
+  <div padding class="left">
+
+    <ion-item>
+      <ion-label>PhoneNumber</ion-label>
+      <ion-label>
+        <h1>{{ViewModel.PhoneNumber}}</h1>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-label>
+        <h1>{{ViewModel.Name}}</h1>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Email Address</ion-label>
+      <ion-label>
+        <h1>{{ViewModel.EmailAddress}}</h1>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Payment Type</ion-label>
+      <ion-label>
+        <h1>{{ViewModel.PaymentType}}</h1>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Amount</ion-label>
+      <ion-label>
+        <h1>{{ViewModel.Amount}}</h1>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Narration</ion-label>
+      <ion-label>
+        <h1>{{ViewModel.Narration}}</h1>
+      </ion-label>
+    </ion-item>
+
+    <div>
+      <button ion-button icon-start block outline large color="blue" (click)="Back()">
+        <ion-icon name="ios-arrow-round-back"></ion-icon>Back
+      </button>
+    </div>
+    <button ion-button block icon-end large color="dark" (click)="Back()">
+      Make Payment
+      <ion-icon name="ios-paper-plane"></ion-icon>
+    </button>
+    <div>
+
+
+    </div>
+    <ion-grid>
+      <ion-row center>
+        <ion-col>
+
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
 </ion-content>

@@ -1,10 +1,10 @@
 export class Payment {
   amount: string;
-  txn_ref: string;
+  paymentTypeId: string;
+  paymentModeId: string;
+  currencyId: string;
+  memberId: string;
   narration: string;
-  paymentType: string;
-  paymentMode: string;
-  currency: string;
 
   constructor() {}
 }

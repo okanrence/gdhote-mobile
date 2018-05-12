@@ -8,6 +8,7 @@ export enum endpoints {
   getPaymentTypes = "/api/v1/payment/get-active-payment-types",
   getPaymentModes = "/api/v1/payment/get-active-payment-modes",
   getCurrencies = "/api/v1/currency/get-active-currencies",
+  initiatePayment = "/api/v1/payment/generate-payment-reference",
 
   auth = "/api/v1/auth/token"
 }
