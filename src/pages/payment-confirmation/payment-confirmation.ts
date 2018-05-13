@@ -20,6 +20,7 @@ export class PaymentConfirmationPage {
   public phoneNumber: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.ViewModel = <PaymentViewModel>this.navParams.get("PaymentViewModel");
+    console.log("Log NavMember at ctor:" + JSON.stringify(this.ViewModel));
   }
 
   ionViewDidLoad() {
@@ -28,5 +29,24 @@ export class PaymentConfirmationPage {
 
   Back(): void {
     this.navCtrl.pop();
+  }
+
+  public makePayment(viewModel: PaymentViewModel) {
+    console.log("got makePayment ");
+    // setTimeout(() => {
+    //   this.navCtrl.push("HomePage");
+    // }, 3000);
+
+    window
+      .initRavePay({
+        // PBFPubKey: "FLWPUBK-d9dda4676e150ec83eac4da33d8a2f4c-X",
+        amount: viewModel.Amount,
+        country: "NG",
+        pay_button_text: "Pay now",
+        custom_title: "GDHOTE",
+        custom_description: "The Great Divine Holy Order of the Third Era",
+        txref: viewModel.Reference
+      })
+      .then(() => this.navCtrl.push("HomePage"));
   }
 }

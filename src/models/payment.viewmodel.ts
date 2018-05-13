@@ -3,13 +3,20 @@ export class PaymentViewModel {
   Name: string;
   EmailAddress: string;
   MemberId: string;
-  PaymentMode: string;
   Narration: string;
-  PaymentType: string;
   Currency: string;
   Reference: string;
   Amount: string;
-
+  PaymentType: PaymentType;
   constructor() {}
 }
 
+class PaymentType {
+  Id: string;
+  Name: string;
+}
+
+class PaymentMode {
+  Id: string;
+  Name: string;
+}

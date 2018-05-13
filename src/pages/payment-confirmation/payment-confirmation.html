@@ -21,44 +21,44 @@
   <div padding class="left">
 
     <ion-item>
-      <ion-label>PhoneNumber</ion-label>
+      <ion-label>Name</ion-label>
       <ion-label>
-        <h1>{{ViewModel.PhoneNumber}}</h1>
+        <h1>{{ViewModel?.Name}}</h1>
       </ion-label>
     </ion-item>
 
     <ion-item>
-      <ion-label>Name</ion-label>
+      <ion-label>Phone Number</ion-label>
       <ion-label>
-        <h1>{{ViewModel.Name}}</h1>
+        <h1>{{ViewModel?.PhoneNumber}}</h1>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label>Email Address</ion-label>
       <ion-label>
-        <h1>{{ViewModel.EmailAddress}}</h1>
+        <h1>{{ViewModel?.EmailAddress}}</h1>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label>Payment Type</ion-label>
       <ion-label>
-        <h1>{{ViewModel.PaymentType}}</h1>
+        <h1>{{ViewModel?.PaymentType.Name}}</h1>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label>Amount</ion-label>
       <ion-label>
-        <h1>{{ViewModel.Amount}}</h1>
+        <h1>{{ViewModel?.Amount}}</h1>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label>Narration</ion-label>
       <ion-label>
-        <h1>{{ViewModel.Narration}}</h1>
+        <h1>{{ViewModel?.Narration}}</h1>
       </ion-label>
     </ion-item>
 
@@ -67,7 +67,7 @@
         <ion-icon name="ios-arrow-round-back"></ion-icon>Back
       </button>
     </div>
-    <button ion-button block icon-end large color="dark" (click)="Back()">
+    <button ion-button block icon-end large color="dark" (click)="makePayment(ViewModel)">
       Make Payment
       <ion-icon name="ios-paper-plane"></ion-icon>
     </button>

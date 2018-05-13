@@ -21,10 +21,10 @@ import { MemberServiceProvider } from "../../providers/member-service/member-ser
 })
 export class PaymentsPage {
   public paymentTypes: any;
-  public phoneNumber: string;
-  public paymentModes: any;
+  //public phoneNumber: string;
+  // public paymentModes: any;
   public currencies: any;
-  public Reference: string;
+  // public reference: string;
   public Payment = new Payment();
   public ViewModel = new PaymentViewModel();
 
@@ -39,7 +39,7 @@ export class PaymentsPage {
     private memberCrtl: MemberServiceProvider
   ) {
     this.GetPaymentTypes();
-    this.GetPaymentModes();
+    // this.GetPaymentModes();
     this.GetCurrencies();
     // this.Payment.txn_ref = "7911081-4810";
   }
@@ -53,11 +53,13 @@ export class PaymentsPage {
   getMember() {
     let loading = this.notificationsCtrl.showLoading("..please wait..");
     loading.present().then(() => {
-      this.memberCrtl.getMember(this.phoneNumber).subscribe(
+      this.memberCrtl.getMember(this.ViewModel.PhoneNumber).subscribe(
         res => {
           console.log(res);
           if (res.length > 1) {
             //pop-up a modal and allow user select which one. i will implement this one day one day.
+            //but for now just pick the first item in the array returned
+            this.populateValues(res[0]);
           } else {
             this.populateValues(res[0]);
           }
@@ -96,19 +98,6 @@ export class PaymentsPage {
     );
   }
 
-  // public makePayment(payment: Payment) {
-  //   console.log("got makePayment ");
-
-  //   window.initRavePay({
-  //     // PBFPubKey: "FLWPUBK-d9dda4676e150ec83eac4da33d8a2f4c-X",
-  //     amount: payment.amount,
-  //     country: "NG",
-  //     pay_button_text: "Pay now",
-  //     custom_title: "GDHOTE",
-  //     custom_description: "The Great Divine Holy Order of the Third Era",
-  //     txref: payment.dc
-  //   });
-  // }
   Back(): void {
     this.navCtrl.pop();
   }
@@ -116,13 +105,14 @@ export class PaymentsPage {
   public InitiatePayment(paymentModel: PaymentViewModel) {
     let loading: any = this.notificationsCtrl.showLoading("..please wait..");
     loading.present().then(() => {
-      let payment = new Payment();
-      payment.amount = paymentModel.Amount;
-      payment.currencyId = paymentModel.Currency;
-      payment.memberId = paymentModel.MemberId;
-      payment.narration = paymentModel.Narration;
-      payment.paymentModeId = paymentModel.PaymentMode;
-      payment.paymentTypeId = paymentModel.PaymentType;
+      let payment: Payment = {
+        amount: paymentModel.Amount,
+        currencyId: paymentModel.Currency,
+        memberId: paymentModel.MemberId,
+        narration: paymentModel.Narration,
+        paymentModeId: "4",
+        paymentTypeId: paymentModel.PaymentType.Id
+      };
 
       this.paymentsCtrl.InitiatePayment(payment).subscribe(
         data => {
@@ -147,21 +137,21 @@ export class PaymentsPage {
     });
   }
 
-  public GetPaymentModes() {
-    this.paymentsCtrl.GetPaymentModes().subscribe(
-      data => {
-        this.paymentModes = data;
-        this.showPaymentModesSpin = false;
-      },
-      error => {
-        console.log("Error Response " + JSON.stringify(error));
-        this.showPaymentModesSpin = false;
-      },
-      () => {
-        this.showPaymentModesSpin = false;
-      }
-    );
-  }
+  // public GetPaymentModes() {
+  //   this.paymentsCtrl.GetPaymentModes().subscribe(
+  //     data => {
+  //       this.paymentModes = data;
+  //       this.showPaymentModesSpin = false;
+  //     },
+  //     error => {
+  //       console.log("Error Response " + JSON.stringify(error));
+  //       this.showPaymentModesSpin = false;
+  //     },
+  //     () => {
+  //       this.showPaymentModesSpin = false;
+  //     }
+  //   );
+  // }
 
   public GetCurrencies() {
     this.paymentsCtrl.GetCurrencies().subscribe(

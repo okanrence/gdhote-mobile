@@ -58,7 +58,7 @@
       <div style="width:40%" class="left search">
 
         <ion-item>
-          <ion-searchbar name="search" [(ngModel)]="phoneNumber" [showCancelButton]=true style="width:100%;">
+          <ion-searchbar name="search" [(ngModel)]="ViewModel.PhoneNumber" [showCancelButton]=true style="width:100%;">
           </ion-searchbar>
           <button ion-button block large icon-end color="dark" (click)="getMember()">Search
             <ion-icon name="md-search"></ion-icon>
@@ -81,7 +81,7 @@
         <ion-spinner name="bubbles" *ngIf="showPaymentTypesSpin"></ion-spinner>
         <ion-label floating>Payment Type*</ion-label>
         <ion-select id="paymentType" name="paymentType" [(ngModel)]="ViewModel.PaymentType" required>
-          <ion-option *ngFor="let paymentType of paymentTypes" [value]="paymentType.Id">{{paymentType.Name}}</ion-option>
+          <ion-option *ngFor="let paymentType of paymentTypes" [value]="paymentType">{{paymentType.Name}}</ion-option>
         </ion-select>
 
       </ion-item>
