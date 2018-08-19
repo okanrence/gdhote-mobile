@@ -1,15 +1,13 @@
 {
   "name": "gdhote-mobile-hub",
-  "app_id": "",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
   },
-
+  "type": "ionic-angular",
   "proxies": [
     {
-        "path": "/api",
-        "proxyUrl": "http://www.purplesclothier.com/gdhote"
+      "path": "/api",
+      "proxyUrl": "http://www.purplesclothier.com/gdhote"
     }
-]
+  ]
 }

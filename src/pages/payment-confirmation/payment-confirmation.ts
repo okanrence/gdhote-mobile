@@ -46,7 +46,7 @@ export class PaymentConfirmationPage {
         custom_title: "GDHOTE",
         custom_description: "The Great Divine Holy Order of the Third Era",
         txref: viewModel.Reference
-      })
-      .then(() => this.navCtrl.push("HomePage"));
+      });
+      // .then(() => this.navCtrl.push("HomePage"));
   }
 }
